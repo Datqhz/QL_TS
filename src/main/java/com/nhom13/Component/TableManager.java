@@ -21,6 +21,7 @@ public final class TableManager extends ManagerView {
     private List<Ban> bans = new ArrayList<>();
     private Employee emp;
     TablePopup form;
+    JComboBox<String> cbxSearch = new JComboBox<>();
 
     public TableManager(TablePopup form, Employee emp) {
         super();
@@ -31,7 +32,7 @@ public final class TableManager extends ManagerView {
         AddEventListener();
         btnEdit.setEnabled(false);
         btnRemove.setEnabled(false);
-        JComboBox<String> cbxSearch = new JComboBox<>();
+        cbxSearch = new JComboBox<>();
         cbxSearch.removeAllItems();
         cbxSearch.addItem("Tên bàn");
         cbxSearch.addItem("Bàn còn trống");
@@ -96,6 +97,24 @@ public final class TableManager extends ManagerView {
             btnEdit.setEnabled(false);
             btnRemove.setEnabled(false);
         });
+        btnSearch.addActionListener(((e) -> {
+            String keyword = txtSearch.getText().trim();
+            int i = this.cbxSearch.getSelectedIndex();
+            BanDAO dao = new BanDAO();
+            if (i == 0) {
+                bans = dao.searchByName(keyword);
+            } else {
+                bans = dao.searchTableActive();
+            }
+            tblModel.setRowCount(0);
+            for (Ban ban : bans) {
+                Object[] row = new Object[]{ban.getId(), ban.getTenBan(), !ban.getTrangThai() ? "Trống" : "Đang sử dụng"};//0 ->Trống , 1-> Đang sử dụng
+                tblModel.addRow(row);
+            }
+            tblModel.fireTableDataChanged();
+
+        }));
+
     }
 
     public void getData() {
