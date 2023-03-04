@@ -178,7 +178,7 @@ public class BanDAO {
         try {
             con = DatabaseHelper.openConnection();
             statement = con.createStatement();
-            String sql = "SELECT * FROM BAN b WHERE b.TRANG_THAI = 1";
+            String sql = "SELECT * FROM BAN b WHERE b.TRANG_THAI = 0";
             ResultSet resultset = statement.executeQuery(sql);
             while (resultset.next()) {
                 Ban ban = new Ban();
