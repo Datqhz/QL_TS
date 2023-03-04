@@ -105,6 +105,7 @@ public final class TableManager extends ManagerView {
                 bans = dao.searchByName(keyword);
             } else {
                 bans = dao.searchTableActive();
+                
             }
             tblModel.setRowCount(0);
             for (Ban ban : bans) {
