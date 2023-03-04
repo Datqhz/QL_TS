@@ -89,34 +89,7 @@ public class DoanhThuDAO {
 
     }
 
-    // tong doanh theo ngay neu 2 ngay trung nhau thi se tinh la 1 ngay 
-    public int TongDoanhThuCuaQuanTuNgayDenNgay(String fromDate, String toDate) {
-        int sum = 0;
-
-        Connection con = null;
-        Statement statement = null;
-        try {
-            con = DatabaseHelper.openConnection();
-            statement = con.createStatement();
-            String sql = """
-                     SELECT SUM(h.THANH_TIEN) as Tong_Doanh_thu FROM HOADON h
-                     WHERE h.NGAY_LAP between '""" + fromDate + "'" + "AND" + "'" + toDate + "'";
-            String sql2 = "SELECT SUM(h.THANH_TIEN) as Tong_Doanh_thu FROM HOADON h";
-            ResultSet resultSet = null;
-            if ("".equals(fromDate) && "".equals(toDate)) {
-                resultSet = statement.executeQuery(sql);
-            } else {
-                resultSet = statement.executeQuery(sql2);
-            }
-
-            while (resultSet.next()) {
-                sum += resultSet.getInt(1);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return sum;
-    }
+    
 
     // 
     public int TongSoNhanVien() {
@@ -186,7 +159,7 @@ public class DoanhThuDAO {
 
             con = DatabaseHelper.openConnection();
             statement = con.createStatement();
-            String sql = "select count(*) as tong from HOADON H WHERE H.NGAY_LAP = '"+date+ "'";
+            String sql = "select count(*) as tong from HOADON H WHERE concat(MONTH(H.NGAY_LAP) , '-' , YEAR(H.NGAY_LAP)) = '"+date+ "'";
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 sum += resultSet.getInt(1);
@@ -205,7 +178,7 @@ public class DoanhThuDAO {
 
             con = DatabaseHelper.openConnection();
             statement = con.createStatement();
-            String sql = "select sum(THANH_TIEN) from HOADON H WHERE H.NGAY_LAP = '"+date+ "'";
+            String sql = "select sum(THANH_TIEN) from HOADON H WHERE concat(MONTH(H.NGAY_LAP) , '-' , YEAR(H.NGAY_LAP)) = '"+date+ "'";
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 sum += resultSet.getInt(1);
