@@ -153,7 +153,7 @@ public class KhuyenMaiDAO {
         try {
             con = DatabaseHelper.openConnection();
             statement = con.createStatement();
-            String sql = "SELECT * FROM KHUYENMAIW HERE KM.NGAY_AP_DUNG <=  '"+date+"'AND KM.NGAY_KET_THUC >= '"+date+"' ";
+            String sql = "SELECT * FROM KHUYENMAI KM WHERE KM.NGAY_AP_DUNG <=  '"+date+"'AND KM.NGAY_KET_THUC >= '"+date+"' ";
             ResultSet resultset = statement.executeQuery(sql);
             while (resultset.next()) {
                 KhuyenMai khuyenMai = new KhuyenMai();
