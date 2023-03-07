@@ -117,13 +117,13 @@ public class StatisticEmployee extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnWatchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnWatchMouseClicked
-        if(dateStart.getDate()==null||dateEnd.getDate()==null){
+        if (dateStart.getDate() == null || dateEnd.getDate() == null) {
             JOptionPane.showMessageDialog(new java.awt.Frame(), "Vui lòng chọn ngày.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-        }else{
+        } else {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String fromDate = dateFormat.format(dateStart.getDate());
-        String toDate = dateFormat.format(dateEnd.getDate());
-            
+            String fromDate = dateFormat.format(dateStart.getDate());
+            String toDate = dateFormat.format(dateEnd.getDate());
+
             DoanhThuDAO dao = new DoanhThuDAO();
             list = dao.TongDoanhThuTheoNhanVienTuNgayDenNgay(fromDate, toDate);
             tblModel.setRowCount(0);
@@ -133,7 +133,7 @@ public class StatisticEmployee extends javax.swing.JPanel {
             }
             tblModel.fireTableDataChanged();
         }
-        
+
 
     }//GEN-LAST:event_btnWatchMouseClicked
 

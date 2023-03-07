@@ -11,8 +11,6 @@ import javax.swing.ImageIcon;
 
 public class Card extends javax.swing.JPanel {
 
-    
-    
     public Color getColorGradient() {
         return colorGradient;
     }
@@ -23,7 +21,7 @@ public class Card extends javax.swing.JPanel {
 
     private Color colorGradient;
 //    private int radius = 0;
-    
+
     public Card() {
         initComponents();
         setOpaque(false);
@@ -38,8 +36,7 @@ public class Card extends javax.swing.JPanel {
 //    public void setRadius(int radius) {
 //        this.radius = radius;
 //    }
-
-    public void setData(String title,int value,String path) {
+    public void setData(String title, int value, String path) {
         lbTitle.setText(title);
         lbValues.setText(NumberVN(value));
         lbIcon.setIcon(new ImageIcon(getClass().getResource(path)));

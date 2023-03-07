@@ -22,7 +22,6 @@ public final class FoodList extends ManagerView {
     private List<MonAn> Foodlist = new ArrayList<>();
     private List<LoaiMon> listCategory = new ArrayList<>();
     FoodPopup form;
-    
 
     public FoodList(FoodPopup form) {
         super();
@@ -152,7 +151,7 @@ public final class FoodList extends ManagerView {
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
-                }else {
+                } else {
                     JOptionPane.showMessageDialog(btnSearch, "Vui lòng nhập tên món ăn muốn tìm kiếm");
                 }
             }

@@ -1,20 +1,17 @@
-
 package com.nhom13.Component;
 
 import com.nhom13.Entity.ChiTietHoaDon;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-
 public class BillItem extends javax.swing.JPanel {
-    
+
 //    private String foodName;
 //    private int total;
 //    private int quantity;
-   
     public BillItem(String foodName, int quantity, double total) {
         initComponents();
-        setInfo(foodName,quantity,total);
+        setInfo(foodName, quantity, total);
     }
 
     public static String NumberVN(double s) {
@@ -22,12 +19,13 @@ public class BillItem extends javax.swing.JPanel {
         NumberFormat vn = NumberFormat.getInstance(localeVN);
         return vn.format(s);
     }
-
-    public void setInfo(String foodName, int quantity, double total){
+    
+    public void setInfo(String foodName, int quantity, double total) {
         lblFoodName.setText(foodName);
         lblQuantity.setText(Integer.toString(quantity));
         lblTotal.setText(NumberVN(total));
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -187,7 +187,7 @@ public class TablePopup extends javax.swing.JDialog {
                         ban.setTrangThai(tt);
                         dao.update(ban);
                         CTBanDAO ctdao = new CTBanDAO();
-                        ChiTietBan ct = new ChiTietBan(tt,ban.getId(),maNV);
+                        ChiTietBan ct = new ChiTietBan(tt, ban.getId(), maNV);
                         ctdao.save(ct);
                         JOptionPane.showMessageDialog(rootPane, "Update successful");
                     } else {

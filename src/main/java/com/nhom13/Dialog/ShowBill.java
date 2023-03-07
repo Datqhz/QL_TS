@@ -1,4 +1,3 @@
-
 package com.nhom13.Dialog;
 
 import com.nhom13.Component.BillItem;
@@ -11,12 +10,13 @@ import com.nhom13.Entity.HoaDon;
 import java.util.List;
 import javax.swing.BoxLayout;
 
-
 public class ShowBill extends javax.swing.JDialog {
+
     HoaDon bill;
     List<ChiTietHoaDon> billDetail;
     Ban ban;
-    public ShowBill(HoaDon bill ) {
+
+    public ShowBill(HoaDon bill) {
         super(new javax.swing.JFrame(), true);
         initComponents();
         setLocationRelativeTo(null);
@@ -25,33 +25,36 @@ public class ShowBill extends javax.swing.JDialog {
         loadBillDetail();
         System.out.println(bill);
     }
-    public void getData(){
-        try{
+
+    public void getData() {
+        try {
             CTHoaDonDAO dao = new CTHoaDonDAO();
             billDetail = dao.findCTHD2(bill.getId());
-            if(bill.getIdBan()>0){
+            if (bill.getIdBan() > 0) {
                 BanDAO bandao = new BanDAO();
                 ban = bandao.findById(bill.getIdBan());
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Lấy chi tiết hóa đơn không thành công");
             e.printStackTrace();
         }
     }
-    public void loadBillDetail(){
+
+    public void loadBillDetail() {
         getData();
         lblID.setText(Integer.toString(bill.getId()));
         lblCreateDate.setText(bill.getNgayLap().toString());
         lblIDEmp.setText(bill.getIdNhanVien());
-        if(ban!=null){
-          lblTableName.setText(ban.getTenBan());  
+        if (ban != null) {
+            lblTableName.setText(ban.getTenBan());
         }
-        
-        for(ChiTietHoaDon item : billDetail){
-            panelBillItem.add(new BillItem(item.getTenMon(),item.getSoLuong(),item.getGia()));
+
+        for (ChiTietHoaDon item : billDetail) {
+            panelBillItem.add(new BillItem(item.getTenMon(), item.getSoLuong(), item.getGia()));
         }
         lblTotal.setText(NumberVN(bill.getThanhTien()));
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

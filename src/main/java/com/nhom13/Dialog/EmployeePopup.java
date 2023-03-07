@@ -499,11 +499,11 @@ public class EmployeePopup extends javax.swing.JDialog {
                 txtPassword.setText("");
             } else {
                 try {
-                    Employee temp = new Employee(manv, ho, ten, sdt, roleIndex +1, sex);
+                    Employee temp = new Employee(manv, ho, ten, sdt, roleIndex + 1, sex);
                     EmployeeDAO dao = new EmployeeDAO();
                     dao.saveEmployee(temp);
                     TaiKhoanDAO tkDao = new TaiKhoanDAO();
-                    TaiKhoan acc = new TaiKhoan(account, password,tt,manv);
+                    TaiKhoan acc = new TaiKhoan(account, password, tt, manv);
                     tkDao.save(acc);
                     JOptionPane.showMessageDialog(new java.awt.Frame(), "Thêm nhân viên thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                     status = true;
@@ -518,7 +518,7 @@ public class EmployeePopup extends javax.swing.JDialog {
             } else {
                 try {
                     TaiKhoan tk = new TaiKhoan(account, password, tt, manv);
-                    
+
                     Employee temp = new Employee(manv, ho, ten, sdt, roleIndex + 1, sex);
                     temp.setAccount(tk);
                     EmployeeDAO dao = new EmployeeDAO();

@@ -16,10 +16,9 @@ import java.util.logging.Logger;
 
 public class EmployeeDAO {
 
-
     public Employee findEmployeeByID(String manv) throws Exception {
         String sql = "SELECT * FROM NHANVIEN WHERE MA_NV = ? ";
-        
+
         try (Connection con = DatabaseHelper.openConnection(); PreparedStatement emp = con.prepareStatement(sql);) {
 
             emp.setString(1, manv);
@@ -87,7 +86,7 @@ public class EmployeeDAO {
             statement.executeUpdate();
             statement = con.prepareCall(sql2);
             statement.setBoolean(1, employee.getAccount().isTrangThai());
-            statement.setString(2,employee.getAccount().getAccount());
+            statement.setString(2, employee.getAccount().getAccount());
             statement.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -146,7 +145,7 @@ public class EmployeeDAO {
         return result;
     }
 
-    public List<Employee> searchNhanVienByName(String keyword) throws Exception{
+    public List<Employee> searchNhanVienByName(String keyword) throws Exception {
         List<Employee> result = new ArrayList<>();
         Connection con = null;
         Statement statement = null;
@@ -154,7 +153,7 @@ public class EmployeeDAO {
 
             con = DatabaseHelper.openConnection();
             statement = con.createStatement();
-            String sql = "SELECT * FROM  NHANVIEN NV, TAIKHOAN TK WHERE NV.MA_NV = TK.MA_NV AND CONCAT(NV.HO,' ',NV.TEN) LIKE '%"+ keyword +"%'";
+            String sql = "SELECT * FROM  NHANVIEN NV, TAIKHOAN TK WHERE NV.MA_NV = TK.MA_NV AND CONCAT(NV.HO,' ',NV.TEN) LIKE '%" + keyword + "%'";
             ResultSet resultset = statement.executeQuery(sql);
             while (resultset.next()) {
                 Employee employee = new Employee();

@@ -1,16 +1,15 @@
-
 package com.nhom13.Entity;
 
-
 public class MonAn {
-    private int id ;
-    private String tenMon ;
+
+    private int id;
+    private String tenMon;
     private String donVi;
-    private int gia ;
-    private String anh ;
-    private String moTa ;
+    private int gia;
+    private String anh;
+    private String moTa;
     private String maNv;
-    private int idLoaiMon ;
+    private int idLoaiMon;
 
     public MonAn() {
     }
@@ -94,6 +93,5 @@ public class MonAn {
     public String toString() {
         return "MonAn{" + "id=" + id + ", tenMon=" + tenMon + ", donVi=" + donVi + ", gia=" + gia + ", anh=" + anh + ", moTa=" + moTa + ", maNv=" + maNv + ", idLoaiMon=" + idLoaiMon + '}';
     }
-    
-    
+
 }

@@ -11,10 +11,11 @@ import java.util.Date;
  * @author thuan
  */
 public class DoanhThuTheoNhanVien {
+
     private String idNhanVien;
-    private String hoTen ;
+    private String hoTen;
     private int soHoaDon;
-    private Long tongDoanhThu ;
+    private Long tongDoanhThu;
 
     @Override
     public String toString() {
@@ -38,7 +39,6 @@ public class DoanhThuTheoNhanVien {
     public void setIdNhanVien(String idNhanVien) {
         this.idNhanVien = idNhanVien;
     }
-    
 
     public String getHoTen() {
         return hoTen;
@@ -64,12 +64,4 @@ public class DoanhThuTheoNhanVien {
         this.tongDoanhThu = tongDoanhThu;
     }
 
-    
-
-    
-
-   
-  
-    
-    
 }

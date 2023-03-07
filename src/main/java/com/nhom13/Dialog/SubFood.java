@@ -1,15 +1,13 @@
-
 package com.nhom13.Dialog;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-
 public class SubFood extends javax.swing.JDialog {
-    
+
     private int sl;
-    private boolean status=false;
-   
+    private boolean status = false;
+
     public SubFood() {
         super(new javax.swing.JFrame(), true);
         initComponents();
@@ -32,13 +30,16 @@ public class SubFood extends javax.swing.JDialog {
         this.sl = sl;
     }
 
-    public void setFeature(Feature task){
+    public void setFeature(Feature task) {
         status = false;
-        if(task == Feature.ADD){
+        if (task == Feature.ADD) {
             btnAdd.setText("Thêm");
-            
-        }else btnAdd.setText("Thay đổi");
+
+        } else {
+            btnAdd.setText("Thay đổi");
+        }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -112,27 +113,26 @@ public class SubFood extends javax.swing.JDialog {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         int sl;
-        if(txtSL.getText().trim().isEmpty()){
+        if (txtSL.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập số lượng.");
         }
-        try{
+        try {
             sl = Integer.parseInt(txtSL.getText().trim());
             this.sl = sl;
             status = true;
             txtSL.setText("");
             setVisible(false);
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Giá trị nhập vào không hợp lệ");
             txtSL.setText("");
         }
-        
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void buttonCustom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCustom1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_buttonCustom1ActionPerformed
 
-  
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

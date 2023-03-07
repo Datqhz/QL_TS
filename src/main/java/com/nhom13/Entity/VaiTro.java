@@ -9,8 +9,9 @@ package com.nhom13.Entity;
  * @author thuan
  */
 public class VaiTro {
-    private int id ;
-    private String name ;
+
+    private int id;
+    private String name;
 
     public VaiTro() {
     }
@@ -40,5 +41,5 @@ public class VaiTro {
     public String toString() {
         return "VaiTro{" + "id=" + id + ", name=" + name + '}';
     }
-    
+
 }

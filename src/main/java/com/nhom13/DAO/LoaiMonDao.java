@@ -115,15 +115,15 @@ public class LoaiMonDao {
             ex.printStackTrace();
         }
     }
-    
-    public List<LoaiMon> SearchLoaiMon(String keyword)throws Exception{
+
+    public List<LoaiMon> SearchLoaiMon(String keyword) throws Exception {
         List<LoaiMon> result = new ArrayList<>();
         Connection con = null;
         Statement statement = null;
         try {
             con = DatabaseHelper.openConnection();
             statement = con.createStatement();
-            String sql = "SELECT * FROM LOAIMON L WHERE L.TEN_LOAI_MON LIKE '%"+ keyword+"%' ";
+            String sql = "SELECT * FROM LOAIMON L WHERE L.TEN_LOAI_MON LIKE '%" + keyword + "%' ";
             ResultSet resultset = statement.executeQuery(sql);
             while (resultset.next()) {
                 LoaiMon loaimon = new LoaiMon(resultset.getInt(1), resultset.getString(2), resultset.getString(3));

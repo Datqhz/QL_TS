@@ -11,9 +11,10 @@ import java.util.Date;
  * @author thuan
  */
 public class Ban {
-    private int id ;
-    private String tenBan ;
-    private Date ngayTao ;
+
+    private int id;
+    private String tenBan;
+    private Date ngayTao;
     private Boolean trangThai;
 
     public Ban() {
@@ -23,7 +24,6 @@ public class Ban {
         this.tenBan = tenBan;
         this.ngayTao = ngayTao;
     }
-    
 
     public Ban(int id, String tenBan, Date ngayTao, Boolean trangThai) {
         this.id = id;
@@ -68,6 +68,5 @@ public class Ban {
     public String toString() {
         return "Ban{" + "id=" + id + ", tenBan=" + tenBan + ", ngayTao=" + ngayTao + ", trangThai=" + trangThai + '}';
     }
-    
-    
+
 }

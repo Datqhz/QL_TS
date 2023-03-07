@@ -46,7 +46,6 @@ public class ChooseClientPopup extends javax.swing.JDialog {
         this.status = status;
     }
 
-    
     public List<KhachHang> findByName(String name) {
         List<KhachHang> tmpList = new ArrayList<>();
         tmpList = this.clientList.stream().filter(client -> (client.getHo() + " " + client.getTen()).contains(name)).collect(Collectors.toList());

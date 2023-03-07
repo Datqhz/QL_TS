@@ -17,11 +17,12 @@ public class FoodItem extends javax.swing.JPanel {
         loadInfo(food);
     }
 
-     public String NumberVN(double s) {
+    public String NumberVN(double s) {
         Locale localeVN = new Locale("vi", "VN");
         NumberFormat vn = NumberFormat.getInstance(localeVN);
         return vn.format(s);
     }
+
     public Icon Resize(String path, int k, int m) {
         ImageIcon imageIcon = new ImageIcon(path); // load the image to a imageIcon
         Image image = imageIcon.getImage(); // transform it 
@@ -31,11 +32,11 @@ public class FoodItem extends javax.swing.JPanel {
     }
 
     public void loadInfo(MonAn food) {
-        if(food.getAnh()!=null){
-          lblImage.setIcon(Resize(food.getAnh(), 60, 60));  
+        if (food.getAnh() != null) {
+            lblImage.setIcon(Resize(food.getAnh(), 60, 60));
         }
         lblFoodName.setText(food.getTenMon());
-        lblPrice.setText(NumberVN(food.getGia())+" / " +food.getDonVi());
+        lblPrice.setText(NumberVN(food.getGia()) + " / " + food.getDonVi());
     }
 
     public MonAn getFood() {

@@ -46,7 +46,8 @@ public class ClientManager extends ManagerView {
         }
         tblModel.fireTableDataChanged();
     }
-
+    
+    //Lấy thông tin khách hàng đang được chọn trên bảng
     public KhachHang getRowIsSelected() {
         int row = tblData.getSelectedRow();
         if (row >= 0) {
@@ -70,6 +71,7 @@ public class ClientManager extends ManagerView {
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Set chức năng cho popup là thêm
                 dialog.setFeature(Feature.ADD, null);
                 dialog.setStatus(false);
                 dialog.setVisible(true);
@@ -82,6 +84,7 @@ public class ClientManager extends ManagerView {
         btnEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Set chức năng cho popup là sửa
                 dialog.setFeature(Feature.EDIT, getRowIsSelected());
                 dialog.setStatus(false);
                 dialog.setVisible(true);
@@ -113,6 +116,7 @@ public class ClientManager extends ManagerView {
         btnReset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Làm mới lại bảng
                 loadData();
                 btnEdit.setEnabled(false);
                 btnRemove.setEnabled(false);
@@ -121,6 +125,7 @@ public class ClientManager extends ManagerView {
         btnSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Tìm kiếm theo tên khách hàng
                 String keyword = txtSearch.getText().trim();
                 if (keyword != null && keyword.length() > 0) {
                     KhachHangDAO dao = new KhachHangDAO();

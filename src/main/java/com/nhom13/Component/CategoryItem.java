@@ -1,13 +1,12 @@
-
 package com.nhom13.Component;
 
 import com.nhom13.Entity.LoaiMon;
 import java.util.Random;
 
-
 public class CategoryItem extends javax.swing.JPanel {
+
     private LoaiMon category;
-   
+
     public CategoryItem(LoaiMon category) {
         initComponents();
         this.category = category;
@@ -21,13 +20,13 @@ public class CategoryItem extends javax.swing.JPanel {
     public void setCategory(LoaiMon category) {
         this.category = category;
     }
-    
-    public void setContent(){
+
+    public void setContent() {
         Random rand = new Random();
         lblCategory.setText(category.getTen());
         setBackground(new java.awt.Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

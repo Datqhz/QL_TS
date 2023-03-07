@@ -1,18 +1,16 @@
-
 package com.nhom13.Entity;
 
 import java.sql.Date;
 import java.util.List;
 
-
 public class HoaDon {
-    
-    private int id ;
+
+    private int id;
     private String hinhThucThanhToan;
-    private Date ngayLap ;
-    private double thanhTien ;
-    private int idBan ;
-    private String idNhanVien ;
+    private Date ngayLap;
+    private double thanhTien;
+    private int idBan;
+    private String idNhanVien;
     private int idKhuyenMai;
     private int idKhachHang;
     List<ChiTietHoaDon> foodList;
@@ -102,12 +100,10 @@ public class HoaDon {
     public void setFoodList(List<ChiTietHoaDon> FoodList) {
         this.foodList = FoodList;
     }
-    
+
     @Override
     public String toString() {
         return "HoaDon{" + "id=" + id + ", hinhThucThanhToan=" + hinhThucThanhToan + ", ngayLap=" + ngayLap + ", thanhTien=" + thanhTien + ", idBan=" + idBan + ", idNhanVien=" + idNhanVien + ", idKhuyenMai=" + idKhuyenMai + ", idKhachHang=" + idKhachHang + '}';
     }
-    
-    
-    
+
 }

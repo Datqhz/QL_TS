@@ -25,12 +25,12 @@ public class ManagerView extends javax.swing.JPanel {
         tblData.getTableHeader().setBackground(new Color(51, 175, 255));
         tblData.getTableHeader().setForeground(new Color(255, 255, 255));
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        tblData.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        tblData.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         ((DefaultTableCellRenderer) tblData.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.LEFT);
-        
+
         pnCbx.setLayout(new FlowLayout());
-        
+
         initTable();
     }
 

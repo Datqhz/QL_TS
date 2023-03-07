@@ -21,7 +21,6 @@ public class FoodCategory extends ManagerView {
     private Employee emp;
     private List<LoaiMon> loaiMons;
     FoodCategoryPopup form;
-    
 
     public FoodCategory(FoodCategoryPopup form, Employee emp) {
         super();
@@ -143,7 +142,7 @@ public class FoodCategory extends ManagerView {
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
-                }else {
+                } else {
                     JOptionPane.showMessageDialog(btnSearch, "Vui lòng nhập tên món ăn muốn tìm kiếm");
                 }
 

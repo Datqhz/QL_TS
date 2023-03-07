@@ -1,4 +1,3 @@
-
 package com.nhom13.Dialog;
 
 import com.nhom13.DAO.LoaiMonDao;
@@ -13,9 +12,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-
 public class FoodPopup extends javax.swing.JDialog {
-private String maNV;
+
+    private String maNV;
     private boolean status;
     Feature feature;
     private MonAn monAn;
@@ -23,7 +22,7 @@ private String maNV;
     DefaultComboBoxModel modelcbx = new DefaultComboBoxModel();
 
     public FoodPopup(java.awt.Frame parent, String maNv) {
-        super(parent,true);
+        super(parent, true);
         initComponents();
         setLocationRelativeTo(null);
         this.maNV = maNv;
@@ -31,7 +30,7 @@ private String maNV;
         cbxCategory.setModel(modelcbx);
     }
 
-public boolean isStatus() {
+    public boolean isStatus() {
         return status;
     }
 
@@ -48,6 +47,7 @@ public boolean isStatus() {
         cbxCategory.setSelectedItem(null);
         lblReviewImg.setIcon(null);
     }
+
     public void loadCombobox() {
         try {
             LoaiMonDao dao = new LoaiMonDao();
@@ -90,7 +90,7 @@ public boolean isStatus() {
     public boolean check(String m) {
         return m.length() == 0 || m == null;
     }
-    
+
     public Icon Resize(String path, int k, int m) {
         ImageIcon imageIcon = new ImageIcon(path); // load the image to a imageIcon
         Image image = imageIcon.getImage(); // transform it 
@@ -98,6 +98,7 @@ public boolean isStatus() {
         imageIcon = new ImageIcon(newimg);
         return imageIcon;
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -344,7 +345,7 @@ public boolean isStatus() {
         int rs = c.showOpenDialog(this);
         if (rs == JFileChooser.APPROVE_OPTION) {
             txtImgPath.setText(c.getSelectedFile().getAbsolutePath());
-            lblReviewImg.setIcon(Resize(c.getSelectedFile().getAbsolutePath(),180,180));
+            lblReviewImg.setIcon(Resize(c.getSelectedFile().getAbsolutePath(), 180, 180));
         }
     }//GEN-LAST:event_btnChooseImgActionPerformed
 
@@ -354,9 +355,9 @@ public boolean isStatus() {
         String gia = txtPrice.getText().trim();
         String moTa = txtNote.getText().trim();
         String imgPath;
-        if(check(txtImgPath.getText().trim())){
+        if (check(txtImgPath.getText().trim())) {
             imgPath = "C:\\Users\\baam0\\OneDrive\\Documents\\GitHub\\QL_TS\\src\\main\\resources\\new.png";
-        }else{
+        } else {
             imgPath = txtImgPath.getText();
         }
         String tenLoai = cbxCategory.getSelectedItem().toString();

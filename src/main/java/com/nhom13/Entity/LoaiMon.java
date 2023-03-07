@@ -1,4 +1,3 @@
-
 package com.nhom13.Entity;
 
 /**
@@ -6,8 +5,9 @@ package com.nhom13.Entity;
  * @author thuan
  */
 public class LoaiMon {
-    private int id ;
-    private String ten ;
+
+    private int id;
+    private String ten;
     private String maNv;
 
     public LoaiMon() {
@@ -17,7 +17,6 @@ public class LoaiMon {
         this.ten = ten;
         this.maNv = maNv;
     }
-    
 
     public String getMaNv() {
         return maNv;
@@ -26,9 +25,8 @@ public class LoaiMon {
     public void setMaNv(String maNv) {
         this.maNv = maNv;
     }
-    
 
-    public LoaiMon(int id, String ten , String maNv ) {
+    public LoaiMon(int id, String ten, String maNv) {
         this.id = id;
         this.ten = ten;
         this.maNv = maNv;
@@ -54,6 +52,5 @@ public class LoaiMon {
     public String toString() {
         return "LoaiMon{" + "id=" + id + ", ten=" + ten + ", maNv=" + maNv + '}';
     }
-    
-    
+
 }

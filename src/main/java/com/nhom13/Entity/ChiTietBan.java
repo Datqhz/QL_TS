@@ -1,4 +1,3 @@
-
 package com.nhom13.Entity;
 
 import java.sql.Date;
@@ -8,7 +7,8 @@ import java.sql.Date;
  * @author thuan
  */
 public class ChiTietBan {
-    private int id ;
+
+    private int id;
     private Date thoiGianCapNhat;
     private boolean trangThai;
     private int idBan;
@@ -75,8 +75,5 @@ public class ChiTietBan {
     public String toString() {
         return "ChiTietBan{" + "id=" + id + ", thoiGianCapNhat=" + thoiGianCapNhat + ", trangThai=" + trangThai + ", idBan=" + idBan + ", idNhanVien=" + idNhanVien + '}';
     }
-    
-    
-    
-    
+
 }

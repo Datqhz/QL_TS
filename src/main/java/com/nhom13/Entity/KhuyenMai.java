@@ -1,13 +1,12 @@
-
 package com.nhom13.Entity;
 
 import com.nhom13.DAO.KhuyenMaiDAO;
 import java.util.Date;
 
-
 public class KhuyenMai {
-    private int id ;
-    private Date ngayApDung ;
+
+    private int id;
+    private Date ngayApDung;
     private Date ngayKetThuc;
     private int giaTri;
     private String lyDo;
@@ -18,7 +17,6 @@ public class KhuyenMai {
         this.giaTri = giaTri;
     }
 
-    
     public KhuyenMai(int id, Date ngayApDung, Date ngayKetThuc, int giaTri, String lyDo, String maNv) {
         this.id = id;
         this.ngayApDung = ngayApDung;
@@ -30,7 +28,6 @@ public class KhuyenMai {
 
     public KhuyenMai() {
     }
-    
 
     public int getId() {
         return id;
@@ -85,6 +82,4 @@ public class KhuyenMai {
         return "KhuyenMai{" + "id=" + id + ", ngayApDung=" + ngayApDung + ", ngayKetThuc=" + ngayKetThuc + ", giaTri=" + giaTri + ", lyDo=" + lyDo + ", maNv=" + maNv + '}';
     }
 
-   
-    
 }

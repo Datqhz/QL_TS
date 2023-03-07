@@ -1,7 +1,7 @@
-
 package com.nhom13.Entity;
 
 public class TaiKhoan {
+
     private int id;
     private String account;
     private String password;
@@ -11,7 +11,6 @@ public class TaiKhoan {
     public TaiKhoan() {
     }
 
-    
     public TaiKhoan(String account, String password, boolean trangThai, String manv) {
         this.id = id;
         this.account = account;
@@ -64,6 +63,5 @@ public class TaiKhoan {
     public String toString() {
         return "TaiKhoan{" + "id=" + id + ", account=" + account + ", password=" + password + ", trangThai=" + trangThai + ", manv=" + manv + '}';
     }
-    
-    
+
 }

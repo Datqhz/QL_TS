@@ -1,4 +1,3 @@
-
 package com.nhom13.swingCustom;
 
 import java.awt.Color;
@@ -9,9 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
+public class ButtonCustom extends JButton {
 
-public class ButtonCustom extends JButton{
-    public ButtonCustom(){
+    public ButtonCustom() {
         //init color
         setColor(Color.WHITE);
         colorOver = new Color(179, 250, 160);
@@ -19,7 +18,7 @@ public class ButtonCustom extends JButton{
         borderColor = new Color(30, 136, 56);
         setContentAreaFilled(false);
         //add event
-        addMouseListener(new MouseAdapter(){
+        addMouseListener(new MouseAdapter() {
             @Override
             public void mouseExited(MouseEvent e) {
                 setBackground(color);
@@ -39,15 +38,15 @@ public class ButtonCustom extends JButton{
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if(over){
+                if (over) {
                     setBackground(colorOver);
-                }else{
+                } else {
                     setBackground(color);
                 }
             }
-            
+
         });
-        
+
     }
     private boolean over;
     private Color color;
@@ -108,16 +107,14 @@ public class ButtonCustom extends JButton{
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON );
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         //paint border
         g2.setColor(borderColor);
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
         g2.setColor(getBackground());
         //Border set 2 pixel
-        g2.fillRoundRect(2, 2, getWidth()-4, getHeight()-4, radius, radius);
-        super.paintComponent(g); 
+        g2.fillRoundRect(2, 2, getWidth() - 4, getHeight() - 4, radius, radius);
+        super.paintComponent(g);
     }
-    
-    
-    
+
 }

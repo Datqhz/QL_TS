@@ -214,12 +214,11 @@ public class ChangePassword extends javax.swing.JDialog {
             ResetForm();
             lblError.setText("Mật khẩu mới không được trùng với mật khẩu hiện tại. Vui lòng nhập lại!");
 
-        }else if(newPass.isBlank()){
+        } else if (newPass.isBlank()) {
             lblError.setText("Trường mật khẩu mới không được để trống!");
-        }else if(newPass.isBlank()){
+        } else if (newPass.isBlank()) {
             lblError.setText("Trường nhập lại mật khẩu mới không được để trống!");
-        }
-        else if (!reNewPass.equals(newPass)) {
+        } else if (!reNewPass.equals(newPass)) {
             ResetForm();
             lblError.setText("Mật khẩu nhập lại không khớp. Vui lòng nhập lại!");
         } else {

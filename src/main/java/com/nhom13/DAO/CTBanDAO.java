@@ -89,7 +89,6 @@ public class CTBanDAO {
 //        }
 //
 //    }
-
 //    public void delete(ChiTietBan chiTietBan) {
 //        Connection con = null;
 //        PreparedStatement statement = null;

@@ -132,7 +132,7 @@ public class KhachHangDAO {
             ex.printStackTrace();
         }
     }
-    
+
     public List<KhachHang> searchByName(String keyword) {
         List<KhachHang> result = new ArrayList<>();
         Connection con = null;
@@ -140,7 +140,7 @@ public class KhachHangDAO {
         try {
             con = DatabaseHelper.openConnection();
             statement = con.createStatement();
-            String sql = "SELECT * FROM KHACHHANG K WHERE CONCAT(K.HO, ' ' ,K.TEN) LIKE '%"+ keyword +"%' ";
+            String sql = "SELECT * FROM KHACHHANG K WHERE CONCAT(K.HO, ' ' ,K.TEN) LIKE '%" + keyword + "%' ";
             ResultSet resultset = statement.executeQuery(sql);
             while (resultset.next()) {
                 KhachHang khachHang = new KhachHang();

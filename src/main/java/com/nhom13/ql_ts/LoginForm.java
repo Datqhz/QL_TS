@@ -36,9 +36,6 @@ public class LoginForm extends javax.swing.JFrame {
     public void setEmp(Employee emp) {
         this.emp = emp;
     }
-    
-    
-    
 
     public void getInfoLogin() {
 
@@ -66,8 +63,8 @@ public class LoginForm extends javax.swing.JFrame {
         return matcher.find();
     }
 
-    public void Login(){
-         boolean check = true;
+    public void Login() {
+        boolean check = true;
 
         if (txtUsername.getText().isEmpty()) {
             lblError.setText("Please enter your username");
@@ -87,31 +84,32 @@ public class LoginForm extends javax.swing.JFrame {
             lblError.setText("Username must not contain space");
             check = false;
         }
-        if (check){
+        if (check) {
             if (checkLogin()) {
-            if (!account.isTrangThai()) {
-                JOptionPane.showMessageDialog(this, "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên để biết thêm chi tiết.", "Thông báo", JOptionPane.WARNING_MESSAGE);
-            } else { 
-                try{
-                    EmployeeDAO dao = new EmployeeDAO();
-                    emp = dao.findEmployeeByID(account.getManv());
-                    emp.setAccount(account);
-                }catch(Exception e){
-                    System.out.println("Lấy nhân viên không thành công!");
-                    e.printStackTrace();
+                if (!account.isTrangThai()) {
+                    JOptionPane.showMessageDialog(this, "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên để biết thêm chi tiết.", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    try {
+                        EmployeeDAO dao = new EmployeeDAO();
+                        emp = dao.findEmployeeByID(account.getManv());
+                        emp.setAccount(account);
+                    } catch (Exception e) {
+                        System.out.println("Lấy nhân viên không thành công!");
+                        e.printStackTrace();
+                    }
+                    home = new Home(emp);
+                    this.dispose();
+                    home.setTitle("Quản lí quán trà sữa");
+                    home.setVisible(true);
                 }
-                home = new Home(emp);
-                this.dispose();
-                home.setTitle("Quản lí quán trà sữa");
-                home.setVisible(true);
-            }
 
-        } else {
-            JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu.", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu.", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            }
         }
-        }
-        
+
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -290,7 +288,7 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-       Login();
+        Login();
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -303,7 +301,7 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_lblNoAccountMouseClicked
 
     private void btnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Login();
         }
     }//GEN-LAST:event_btnLoginKeyPressed

@@ -65,7 +65,6 @@ public class HoaDonDao {
 //        return id;
 //
 //    }
-
     public void save(HoaDon hoaDon) {
         Connection con = null;
         try {
@@ -88,25 +87,25 @@ public class HoaDonDao {
             statement.setString(1, type);
 //            statement.setObject(2, ngayLap);
             statement.setDouble(2, sum);
-            if(hoaDon.getIdBan()==0){
+            if (hoaDon.getIdBan() == 0) {
                 statement.setNull(3, INTEGER);
-            }else{
+            } else {
                 statement.setInt(3, idBan);
             }
             statement.setString(4, maNv);
-            
-            if(hoaDon.getIdKhuyenMai()==0){
+
+            if (hoaDon.getIdKhuyenMai() == 0) {
                 statement.setNull(5, INTEGER);
-            }else{
+            } else {
                 statement.setInt(5, idKhuyenMai);
             }
-            if(hoaDon.getIdKhachHang()==0){
+            if (hoaDon.getIdKhachHang() == 0) {
                 statement.setNull(6, INTEGER);
-            }else{
-               statement.setInt(6, idKhachHang);  
+            } else {
+                statement.setInt(6, idKhachHang);
             }
             statement.executeUpdate();
-            
+
             // Lấy số hóa đơn vừa tạo
             String sql1 = "SELECT IDENT_CURRENT('HOADON') as LastID";
             Statement getIdOrder = con.createStatement();
@@ -117,12 +116,12 @@ public class HoaDonDao {
             }
             // Thêm chi tiết hóa đơn
             List<ChiTietHoaDon> list = hoaDon.getFoodList();
-            for( ChiTietHoaDon ct :list ){
+            for (ChiTietHoaDon ct : list) {
                 int idMonAn = ct.getIdMonAn();
                 int quantity = ct.getSoLuong();
                 double gia = ct.getGia();
                 String sql2 = "INSERT INTO CTHOADON (SO_HOA_DON , ID_MON , SO_LUONG , GIA) "
-                    + "           VALUES(? , ? , ? , ?)";
+                        + "           VALUES(? , ? , ? , ?)";
                 statement = con.prepareStatement(sql2);
                 statement.setInt(1, idhd);
                 statement.setInt(2, idMonAn);
@@ -130,24 +129,24 @@ public class HoaDonDao {
                 statement.setDouble(4, gia);
                 statement.executeUpdate();
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-    
-    public List<HoaDon> findById(int id){
+
+    public List<HoaDon> findById(int id) {
         Connection con = null;
         Statement statement = null;
         try {
             con = DatabaseHelper.openConnection();
             statement = con.createStatement();
-            String sql = "SELECT * FROM HOADON WHERE SO_HOA_DON="+id;
+            String sql = "SELECT * FROM HOADON WHERE SO_HOA_DON=" + id;
             ResultSet resultSet = statement.executeQuery(sql);
             HoaDon bill = new HoaDon();
             while (resultSet.next()) {
-                
+
                 bill.setId(resultSet.getInt(1));
                 bill.setHinhThucThanhToan(resultSet.getString(2));
                 bill.setNgayLap(resultSet.getDate(3));
@@ -220,5 +219,4 @@ public class HoaDonDao {
 //            e.printStackTrace();
 //        }
 //    }
-
 }

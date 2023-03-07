@@ -51,7 +51,7 @@ public class BillList extends ManagerView {
         }
         tblModel.fireTableDataChanged();
     }
-
+    //Lấy hàng hóa đơn đang được chọn trên bảng
     public HoaDon getRowIsSelected() {
         int row = tblData.getSelectedRow();
         if (row >= 0) {
@@ -109,8 +109,8 @@ public class BillList extends ManagerView {
                 HoaDonDao dao = new HoaDonDao();
                 billList = dao.findById(Integer.parseInt(keyword));
                 tblModel.setRowCount(0);
-                Object[] row = new Object[]{billList.get(0).getId(), billList.get(0).getIdNhanVien(), billList.get(0).getNgayLap()
-                        , billList.get(0).getIdKhachHang() != 0 ? billList.get(0).getIdKhachHang() : "", billList.get(0).getThanhTien()};
+                Object[] row = new Object[]{billList.get(0).getId(), billList.get(0).getIdNhanVien(), billList.get(0).getNgayLap(),
+                     billList.get(0).getIdKhachHang() != 0 ? billList.get(0).getIdKhachHang() : "", billList.get(0).getThanhTien()};
                 tblModel.addRow(row);
                 tblModel.fireTableDataChanged();
 

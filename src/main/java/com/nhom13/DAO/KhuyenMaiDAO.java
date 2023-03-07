@@ -130,22 +130,20 @@ public class KhuyenMaiDAO {
             ex.printStackTrace();
         }
     }
-    
-    public KhuyenMai getKMInTime()throws Exception{
+
+    public KhuyenMai getKMInTime() throws Exception {
         KhuyenMai km;
         String sql = "SELECT ID_KM, PHAN_TRAM_KM FROM KHUYENMAI "
                 + "WHERE DATEDIFF(DAY,GETDATE(),NGAY_AP_DUNG)<0 AND DATEDIFF(DAY,GETDATE(),NGAY_KET_THUC)>0";
-        try(Connection con = DatabaseHelper.openConnection();
-            Statement statement = con.createStatement();
-            ResultSet result = statement.executeQuery(sql)){
-            while(result.next()){
-                km = new KhuyenMai(result.getInt(1),result.getInt(2));
+        try (Connection con = DatabaseHelper.openConnection(); Statement statement = con.createStatement(); ResultSet result = statement.executeQuery(sql)) {
+            while (result.next()) {
+                km = new KhuyenMai(result.getInt(1), result.getInt(2));
                 return km;
             }
         }
         return null;
     }
-    
+
     public List<KhuyenMai> searchByDate(String date) {
         List<KhuyenMai> result = new ArrayList<>();
         Connection con = null;
@@ -153,7 +151,7 @@ public class KhuyenMaiDAO {
         try {
             con = DatabaseHelper.openConnection();
             statement = con.createStatement();
-            String sql = "SELECT * FROM KHUYENMAI KM WHERE KM.NGAY_AP_DUNG <=  '"+date+"'AND KM.NGAY_KET_THUC >= '"+date+"' ";
+            String sql = "SELECT * FROM KHUYENMAI KM WHERE KM.NGAY_AP_DUNG <=  '" + date + "'AND KM.NGAY_KET_THUC >= '" + date + "' ";
             ResultSet resultset = statement.executeQuery(sql);
             while (resultset.next()) {
                 KhuyenMai khuyenMai = new KhuyenMai();
@@ -171,6 +169,5 @@ public class KhuyenMaiDAO {
         }
         return result;
     }
-    
-    
+
 }

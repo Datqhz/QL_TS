@@ -1,8 +1,7 @@
-
 package com.nhom13.Entity;
 
-
 public class Employee {
+
     private String maNV;
     private String firstName;
     private String lastName;
@@ -10,9 +9,8 @@ public class Employee {
     private int role;
     private String gioiTinh;
     private TaiKhoan account;
-    
-    //Constructor
 
+    //Constructor
     public Employee() {
     }
 
@@ -24,7 +22,6 @@ public class Employee {
 //        this.role = role;
 //        this.gioiTinh = gioiTinh;
 //    }
-
 //    public Employee(String firstName, String lastName, String sdt, int role, String gioiTinh) {
 //        this.firstName = firstName;
 //        this.lastName = lastName;
@@ -32,7 +29,6 @@ public class Employee {
 //        this.role = role;
 //        this.gioiTinh = gioiTinh;
 //    }
-
     public Employee(String maNV, String firstName, String lastName, String sdt, int role, String gioiTinh) {
         this.maNV = maNV;
         this.firstName = firstName;
@@ -57,8 +53,7 @@ public class Employee {
     public void setAccount(TaiKhoan account) {
         this.account = account;
     }
-    
-    
+
 //    public Employee(String maNV, String firstName, String lastName,  String sdt, int role) {
 //        this.maNV = maNV;
 //        this.firstName = firstName;
@@ -67,7 +62,6 @@ public class Employee {
 //        this.role = role;
 //    }
 //    
-    
     //Getter and setter
     public String getMaNV() {
         return maNV;
@@ -93,7 +87,6 @@ public class Employee {
         this.lastName = lastName;
     }
 
-
     public String getSdt() {
         return sdt;
     }
@@ -112,11 +105,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" + "maNV=" + maNV + ", firstName=" + firstName + ", lastName=" + lastName +  ", sdt=" + sdt + ", role=" + role + ", gioiTinh=" + gioiTinh + '}';
+        return "Employee{" + "maNV=" + maNV + ", firstName=" + firstName + ", lastName=" + lastName + ", sdt=" + sdt + ", role=" + role + ", gioiTinh=" + gioiTinh + '}';
     }
 
-    
-    
-    
-    
 }

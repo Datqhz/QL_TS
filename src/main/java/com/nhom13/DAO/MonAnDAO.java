@@ -1,4 +1,3 @@
-
 package com.nhom13.DAO;
 
 import com.nhom13.Database.DatabaseHelper;
@@ -44,7 +43,7 @@ public class MonAnDAO {
         }
         return result;
     }
-    
+
     public List<MonAn> findByCategory(int id) {
         List<MonAn> result = new ArrayList<>();
         Connection con = null;
@@ -86,13 +85,13 @@ public class MonAnDAO {
             String moTa = monAn.getMoTa();
             int idLoaiMon = monAn.getIdLoaiMon();
             String maNv = monAn.getMaNv();
-                     String sql = "INSERT INTO MONAN( TEN_MON , DON_VI_TINH , GIA ,ANH,  MO_TA , ID_LOAI_MON , MA_NV)"
+            String sql = "INSERT INTO MONAN( TEN_MON , DON_VI_TINH , GIA ,ANH,  MO_TA , ID_LOAI_MON , MA_NV)"
                     + "           VALUES( ? , ? , ? , ? , ? , ?,? ) ";
             statement = con.prepareCall(sql);
             statement.setString(1, ten);
-            if(monAn.getDonVi().isBlank()){
+            if (monAn.getDonVi().isBlank()) {
                 statement.setNull(2, NVARCHAR);
-            }else{
+            } else {
                 statement.setString(2, donVi);
             }
 
@@ -178,7 +177,7 @@ public class MonAnDAO {
             ex.printStackTrace();
         }
     }
-    
+
     public List<MonAn> searchMonAnByName(String keyword) {
         List<MonAn> result = new ArrayList<>();
         Connection con = null;
@@ -186,7 +185,7 @@ public class MonAnDAO {
         try {
             con = DatabaseHelper.openConnection();
             statement = con.createStatement();
-            String sql = "SELECT * FROM MONAN M WHERE M.TEN_MON LIKE '%"+keyword+"%' ";
+            String sql = "SELECT * FROM MONAN M WHERE M.TEN_MON LIKE '%" + keyword + "%' ";
             ResultSet resultset = statement.executeQuery(sql);
             while (resultset.next()) {
                 MonAn monAn = new MonAn();

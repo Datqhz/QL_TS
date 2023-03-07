@@ -1,4 +1,3 @@
-
 package com.nhom13.Component;
 
 import com.nhom13.DAO.DoanhThuDAO;
@@ -14,39 +13,36 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-
 public class Statistic extends javax.swing.JPanel {
 
     /**
      * Creates new form Statistic
      */
-    
-     public DoanhThuDAO dao = new DoanhThuDAO();
-     public List<DoanhThuTheoMonAn> doanhThu = new ArrayList<>();
+    public DoanhThuDAO dao = new DoanhThuDAO();
+    public List<DoanhThuTheoMonAn> doanhThu = new ArrayList<>();
+
     public Statistic() {
-       
+
         initComponents();
         panelChart.setLayout(new FlowLayout());
         setStatistic();
     }
-    
-    public static JFreeChart createChart(String date ,  List<DoanhThuTheoMonAn> doanhThu){//List<DoanhThuTheoMonAn> list
-        
+
+    public static JFreeChart createChart(String date, List<DoanhThuTheoMonAn> doanhThu) {//List<DoanhThuTheoMonAn> list
+
         JFreeChart barChart = ChartFactory.createBarChart(
                 "TOP 5 MÓN CÓ DOANH THU CAO NHẤT",
                 "Doanh thu", "Món",
-                createDataset(date , doanhThu),PlotOrientation.VERTICAL, false, false, false
+                createDataset(date, doanhThu), PlotOrientation.VERTICAL, false, false, false
         );
         return barChart;
     }
-    
-    public static CategoryDataset createDataset(String date ,List<DoanhThuTheoMonAn> list ){//List<DoanhThuTheoMonAn> list
-         
-        
-        
+
+    public static CategoryDataset createDataset(String date, List<DoanhThuTheoMonAn> list) {//List<DoanhThuTheoMonAn> list
+
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for(DoanhThuTheoMonAn temp : list){
-             dataset.addValue(temp.getTongTien(), "Doanh thu", temp.getTenMon());
+        for (DoanhThuTheoMonAn temp : list) {
+            dataset.addValue(temp.getTongTien(), "Doanh thu", temp.getTenMon());
         }
 
 //        dataset.addValue(doanhThu.get(0).getTongTien(), "Doanh thu", doanhThu.get(0).getTenMon());
@@ -56,7 +52,8 @@ public class Statistic extends javax.swing.JPanel {
 //        dataset.addValue(doanhThu.get(4).getTongTien(), "Doanh thu", doanhThu.get(4).getTenMon());
         return dataset;
     }
-    public void setStatistic(){
+
+    public void setStatistic() {
         String Month = String.valueOf(this.month.getMonth());
         String Year = String.valueOf(this.year.getYear());
         String date = Month.concat("-").concat(Year);
@@ -65,43 +62,43 @@ public class Statistic extends javax.swing.JPanel {
         cardProfit.setData("Doanh thu", getTongDoanhThuTheoNgay(date), "/coin_white.png");
         cardEmployee.setData("Nhân viên", getSoLuongNhanVien(), "/employee_white.png");
         cardClient.setData("Khách hàng", getSoLuongKhachHang(), "/client_white.png");
-        
+
         panelChart.removeAll();
-        ChartPanel chart = new ChartPanel(createChart(date , doanhThu ));
-        chart.setPreferredSize(new java.awt.Dimension(580,400));
+        ChartPanel chart = new ChartPanel(createChart(date, doanhThu));
+        chart.setPreferredSize(new java.awt.Dimension(580, 400));
         panelChart.add(chart);
     }
-    
-    public void setStatistic(int bill, int profit, int employee, int client , String date){
+
+    public void setStatistic(int bill, int profit, int employee, int client, String date) {
         doanhThu = dao.topDoanhThu5MonAnTheoThoiGian(date);
         cardBill.setData("Hóa đơn", bill, "/bill_white.png");
         cardProfit.setData("Doanh thu", profit, "/coin_white.png");
         cardEmployee.setData("Nhân viên", employee, "/employee_white.png");
         cardClient.setData("Khách hàng", client, "/client_white.png");
-        
+
         panelChart.removeAll();
-        ChartPanel chart = new ChartPanel(createChart(date , doanhThu ));
-        chart.setPreferredSize(new java.awt.Dimension(580,400));
+        ChartPanel chart = new ChartPanel(createChart(date, doanhThu));
+        chart.setPreferredSize(new java.awt.Dimension(580, 400));
         panelChart.add(chart);
         System.out.println(doanhThu);
     }
-    
 
-    public int getTongSoHoaDon(String date){
+    public int getTongSoHoaDon(String date) {
         return dao.soLuongHoaDon(date);
     }
-    public int getTongDoanhThuTheoNgay(String date){
+
+    public int getTongDoanhThuTheoNgay(String date) {
         return dao.tongDoanhThuCuaNgay(date);
     }
-    public int getSoLuongNhanVien(){
+
+    public int getSoLuongNhanVien() {
         return dao.TongSoNhanVien();
     }
-    public int getSoLuongKhachHang(){
+
+    public int getSoLuongKhachHang() {
         return dao.soLuongKhachHang();
     }
-     
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -243,16 +240,16 @@ public class Statistic extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-       String Month = String.valueOf(this.month.getMonth()+1);
+        String Month = String.valueOf(this.month.getMonth() + 1);
         String Year = String.valueOf(this.year.getYear());
         String date = Month.concat("-").concat(Year);
         int bill = getTongSoHoaDon(date);
-        int profit =getTongDoanhThuTheoNgay(date) ;
+        int profit = getTongDoanhThuTheoNgay(date);
         int employee = getSoLuongNhanVien();
         int client = getSoLuongKhachHang();
         System.out.println(date);
-        setStatistic(bill , profit , employee , client , date);
-       
+        setStatistic(bill, profit, employee, client, date);
+
     }//GEN-LAST:event_searchActionPerformed
 
 

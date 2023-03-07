@@ -1,4 +1,3 @@
-
 package com.nhom13.DAO;
 
 import com.nhom13.Database.DatabaseHelper;
@@ -10,12 +9,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TaiKhoanDAO {
-    
+
     public TaiKhoan findAccount(String account, String password) throws Exception {
         String sql = "SELECT * FROM TAIKHOAN WHERE ACCOUNT = ? AND PASSWORD = ?";
-        
+
         try (Connection con = DatabaseHelper.openConnection(); PreparedStatement emp = con.prepareStatement(sql);) {
 
             emp.setString(1, account);
@@ -54,19 +52,16 @@ public class TaiKhoanDAO {
             return rs;
         }
     }
-    
-    public void save(TaiKhoan account)throws Exception{
+
+    public void save(TaiKhoan account) throws Exception {
         String sql = "INSERT INTO TAIKHOAN(ACCOUNT, PASSWORD, TRANG_THAI, MA_NV) VALUES(?,?,?,?)";
         String sql2 = "UPDATE NHANVIEN SET ID_TK= ? WHERE MA_NV= ?";
-        try (Connection con = DatabaseHelper.openConnection();
-                PreparedStatement tk = con.prepareStatement(sql);
-                Statement getIdTK = con.createStatement();
-                PreparedStatement updateNV = con.prepareStatement(sql2)) {
+        try (Connection con = DatabaseHelper.openConnection(); PreparedStatement tk = con.prepareStatement(sql); Statement getIdTK = con.createStatement(); PreparedStatement updateNV = con.prepareStatement(sql2)) {
 
-            tk.setString(1,account.getAccount() );
+            tk.setString(1, account.getAccount());
             tk.setString(2, account.getPassword());
             tk.setBoolean(3, account.isTrangThai());
-            tk.setString(4,account.getManv());
+            tk.setString(4, account.getManv());
             tk.executeUpdate();
             String sql1 = "SELECT IDENT_CURRENT('TAIKHOAN') as LastID";
             ResultSet resultSet = getIdTK.executeQuery(sql1);
@@ -74,16 +69,15 @@ public class TaiKhoanDAO {
             while (resultSet.next()) {
                 idtk = resultSet.getInt(1);
             }
-            
-            updateNV.setInt(1,idtk);
+
+            updateNV.setInt(1, idtk);
             updateNV.setString(2, account.getManv());
             updateNV.executeUpdate();
-            
+
         }
     }
-    
-    
-       public void update(TaiKhoan account) {
+
+    public void update(TaiKhoan account) {
         try {
             Connection con = DatabaseHelper.openConnection();
             PreparedStatement statement = null;
@@ -96,5 +90,5 @@ public class TaiKhoanDAO {
             ex.printStackTrace();
         }
     }
-    
+
 }

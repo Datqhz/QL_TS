@@ -122,9 +122,9 @@ public class BanDAO {
             ResultSet resultset = statement.executeQuery(sql);
             while (resultset.next()) {
                 ban = new Ban(resultset.getInt(1),
-                         resultset.getString(2),
-                         resultset.getDate(3),
-                         resultset.getBoolean(4));
+                        resultset.getString(2),
+                        resultset.getDate(3),
+                        resultset.getBoolean(4));
 
             }
         } catch (Exception ex) {
@@ -147,15 +147,15 @@ public class BanDAO {
             ex.printStackTrace();
         }
     }
-    
-     public List<Ban> searchByName(String keyword) {
+
+    public List<Ban> searchByName(String keyword) {
         List<Ban> result = new ArrayList<>();
         Connection con = null;
         Statement statement = null;
         try {
             con = DatabaseHelper.openConnection();
             statement = con.createStatement();
-            String sql = "SELECT * FROM BAN b WHERE b.TEN_BAN LIKE '%"+keyword+"%' ";
+            String sql = "SELECT * FROM BAN b WHERE b.TEN_BAN LIKE '%" + keyword + "%' ";
             ResultSet resultset = statement.executeQuery(sql);
             while (resultset.next()) {
                 Ban ban = new Ban();
@@ -171,7 +171,8 @@ public class BanDAO {
         }
         return result;
     }
-     public List<Ban> searchTableActive() {
+
+    public List<Ban> searchTableActive() {
         List<Ban> result = new ArrayList<>();
         Connection con = null;
         Statement statement = null;

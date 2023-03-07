@@ -1,4 +1,3 @@
-
 package com.nhom13.Entity;
 
 import java.util.Date;
@@ -8,11 +7,12 @@ import java.util.Date;
  * @author thuan
  */
 public class KhachHang {
-    private int id ;
-    private String ho ;
-    private String ten ;
+
+    private int id;
+    private String ho;
+    private String ten;
     private String sdt;
-    private Date ngaySinh ;
+    private Date ngaySinh;
 
     public KhachHang() {
     }
@@ -23,7 +23,6 @@ public class KhachHang {
         this.sdt = sdt;
         this.ngaySinh = ngaySinh;
     }
-    
 
     public KhachHang(int id, String ho, String ten, String sdt, Date ngaySinh) {
         this.id = id;
@@ -77,7 +76,5 @@ public class KhachHang {
     public String toString() {
         return "KhachHang{" + "id=" + id + ", ho=" + ho + ", ten=" + ten + ", sdt=" + sdt + ", ngaySinh=" + ngaySinh + '}';
     }
-    
-    
-    
+
 }

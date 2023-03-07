@@ -1,13 +1,13 @@
-
 package com.nhom13.Entity;
 
 public class ChiTietHoaDon {
-    private int id ;
-    private int idHoaDon ;
+
+    private int id;
+    private int idHoaDon;
     private int idMonAn;
     private String tenMon;
-    private int soLuong ;
-    private double gia; 
+    private int soLuong;
+    private double gia;
 
     public ChiTietHoaDon(int idMonAn, String tenmon, int soLuong, double gia) {
         this.idMonAn = idMonAn;
@@ -16,7 +16,6 @@ public class ChiTietHoaDon {
         this.gia = gia;
     }
 
-    
     public ChiTietHoaDon(int idMonAn, int soLuong, double gia) {
         this.idMonAn = idMonAn;
         this.soLuong = soLuong;
@@ -42,7 +41,6 @@ public class ChiTietHoaDon {
         this.tenMon = tenMon;
     }
 
-    
     public int getId() {
         return id;
     }
@@ -87,5 +85,5 @@ public class ChiTietHoaDon {
     public String toString() {
         return "ChiTetHoaDon{" + "id=" + id + ", idHoaDon=" + idHoaDon + ", idMonAn=" + idMonAn + ", soLuong=" + soLuong + ", gia=" + gia + '}';
     }
-    
+
 }
