@@ -11,7 +11,7 @@ import java.util.Date;
  * @author thuan
  */
 public class DoanhThuTheoNhanVien {
-    private int idNhanVien;
+    private String idNhanVien;
     private String hoTen ;
     private int soHoaDon;
     private Long tongDoanhThu ;
@@ -24,20 +24,21 @@ public class DoanhThuTheoNhanVien {
     public DoanhThuTheoNhanVien() {
     }
 
-    public DoanhThuTheoNhanVien(int idNhanVien, String hoTen, int soHoaDon, Long tongDoanhThu) {
+    public DoanhThuTheoNhanVien(String idNhanVien, String hoTen, int soHoaDon, Long tongDoanhThu) {
         this.idNhanVien = idNhanVien;
         this.hoTen = hoTen;
         this.soHoaDon = soHoaDon;
         this.tongDoanhThu = tongDoanhThu;
     }
 
-    public int getIdNhanVien() {
+    public String getIdNhanVien() {
         return idNhanVien;
     }
 
-    public void setIdNhanVien(int idNhanVien) {
+    public void setIdNhanVien(String idNhanVien) {
         this.idNhanVien = idNhanVien;
     }
+    
 
     public String getHoTen() {
         return hoTen;

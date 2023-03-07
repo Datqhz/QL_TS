@@ -6,6 +6,7 @@ import com.nhom13.Entity.TaiKhoan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,15 +57,27 @@ public class TaiKhoanDAO {
     
     public void save(TaiKhoan account)throws Exception{
         String sql = "INSERT INTO TAIKHOAN(ACCOUNT, PASSWORD, TRANG_THAI, MA_NV) VALUES(?,?,?,?)";
-        
-        try (Connection con = DatabaseHelper.openConnection(); PreparedStatement tk = con.prepareStatement(sql);) {
+        String sql2 = "UPDATE NHANVIEN SET ID_TK= ? WHERE MA_NV= ?";
+        try (Connection con = DatabaseHelper.openConnection();
+                PreparedStatement tk = con.prepareStatement(sql);
+                Statement getIdTK = con.createStatement();
+                PreparedStatement updateNV = con.prepareStatement(sql2)) {
 
             tk.setString(1,account.getAccount() );
             tk.setString(2, account.getPassword());
             tk.setBoolean(3, account.isTrangThai());
             tk.setString(4,account.getManv());
-            
             tk.executeUpdate();
+            String sql1 = "SELECT IDENT_CURRENT('TAIKHOAN') as LastID";
+            ResultSet resultSet = getIdTK.executeQuery(sql1);
+            int idtk = 0;
+            while (resultSet.next()) {
+                idtk = resultSet.getInt(1);
+            }
+            
+            updateNV.setInt(1,idtk);
+            updateNV.setString(2, account.getManv());
+            updateNV.executeUpdate();
             
         }
     }

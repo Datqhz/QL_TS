@@ -40,20 +40,20 @@ public class Statistic extends javax.swing.JPanel {
         return barChart;
     }
     
-    public static CategoryDataset createDataset(String date ,List<DoanhThuTheoMonAn> doanhThu ){//List<DoanhThuTheoMonAn> list
+    public static CategoryDataset createDataset(String date ,List<DoanhThuTheoMonAn> list ){//List<DoanhThuTheoMonAn> list
          
         
         
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-//        for(DoanhThuTheoMonAn temp : list){
-//             dataset.addValue(temp.getTongTien(), "Doanh thu", temp.getTenMon());
-//        }
+        for(DoanhThuTheoMonAn temp : list){
+             dataset.addValue(temp.getTongTien(), "Doanh thu", temp.getTenMon());
+        }
 
-        dataset.addValue(doanhThu.get(0).getTongTien(), "Doanh thu", doanhThu.get(0).getTenMon());
-        dataset.addValue(doanhThu.get(1).getTongTien(), "Doanh thu", doanhThu.get(1).getTenMon());
-        dataset.addValue(doanhThu.get(2).getTongTien(), "Doanh thu", doanhThu.get(2).getTenMon());
-        dataset.addValue(doanhThu.get(3).getTongTien(), "Doanh thu", doanhThu.get(3).getTenMon());
-        dataset.addValue(doanhThu.get(4).getTongTien(), "Doanh thu", doanhThu.get(4).getTenMon());
+//        dataset.addValue(doanhThu.get(0).getTongTien(), "Doanh thu", doanhThu.get(0).getTenMon());
+//        dataset.addValue(doanhThu.get(1).getTongTien(), "Doanh thu", doanhThu.get(1).getTenMon());
+//        dataset.addValue(doanhThu.get(2).getTongTien(), "Doanh thu", doanhThu.get(2).getTenMon());
+//        dataset.addValue(doanhThu.get(3).getTongTien(), "Doanh thu", doanhThu.get(3).getTenMon());
+//        dataset.addValue(doanhThu.get(4).getTongTien(), "Doanh thu", doanhThu.get(4).getTenMon());
         return dataset;
     }
     public void setStatistic(){
@@ -83,6 +83,7 @@ public class Statistic extends javax.swing.JPanel {
         ChartPanel chart = new ChartPanel(createChart(date , doanhThu ));
         chart.setPreferredSize(new java.awt.Dimension(580,400));
         panelChart.add(chart);
+        System.out.println(doanhThu);
     }
     
 
@@ -242,14 +243,14 @@ public class Statistic extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-       String Month = String.valueOf(this.month.getMonth());
+       String Month = String.valueOf(this.month.getMonth()+1);
         String Year = String.valueOf(this.year.getYear());
         String date = Month.concat("-").concat(Year);
         int bill = getTongSoHoaDon(date);
         int profit =getTongDoanhThuTheoNgay(date) ;
         int employee = getSoLuongNhanVien();
         int client = getSoLuongKhachHang();
-        
+        System.out.println(date);
         setStatistic(bill , profit , employee , client , date);
        
     }//GEN-LAST:event_searchActionPerformed

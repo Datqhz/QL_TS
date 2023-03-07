@@ -1,5 +1,6 @@
 package com.nhom13.swingCustom;
 
+import static com.nhom13.Component.BillItem.NumberVN;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -40,7 +41,7 @@ public class Card extends javax.swing.JPanel {
 
     public void setData(String title,int value,String path) {
         lbTitle.setText(title);
-        lbValues.setText(Integer.toString(value));
+        lbValues.setText(NumberVN(value));
         lbIcon.setIcon(new ImageIcon(getClass().getResource(path)));
 
     }

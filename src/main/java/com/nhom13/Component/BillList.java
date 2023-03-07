@@ -1,4 +1,3 @@
-
 package com.nhom13.Component;
 
 import com.nhom13.DAO.HoaDonDao;
@@ -13,13 +12,14 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+public class BillList extends ManagerView {
 
-public class BillList extends ManagerView{
     private Employee emp;
     List<HoaDon> billList = new ArrayList<>();
+
     public BillList(Employee emp) {
         super();
-        setHeaderTable("Số hóa đơn", "Người lập hóa đơn","Ngày lập", "ID khách hàng","Thành tiền");
+        setHeaderTable("Số hóa đơn", "Người lập hóa đơn", "Ngày lập", "ID khách hàng", "Thành tiền");
         this.emp = emp;
 //        this.remove(btnRemove);
         btnRemove.setVisible(false);
@@ -29,28 +29,29 @@ public class BillList extends ManagerView{
         AddEventListener();
         btnEdit.setEnabled(false);;
     }
-    
-    
-    public void getData(){
-        try{
+
+    public void getData() {
+        try {
             HoaDonDao dao = new HoaDonDao();
             billList = dao.findAll();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Lấy danh sách hóa đơn không thành công");
             e.printStackTrace();
         }
     }
-    public void loadData(){
+
+    public void loadData() {
         getData();
         System.out.println(billList);
         tblModel.setRowCount(0);
-        for(HoaDon bill : billList){
-            
-            Object[] obj = new Object[]{bill.getId(), bill.getIdNhanVien(),bill.getNgayLap(),bill.getIdKhachHang()!=0?bill.getIdKhachHang():"",bill.getThanhTien()};
+        for (HoaDon bill : billList) {
+
+            Object[] obj = new Object[]{bill.getId(), bill.getIdNhanVien(), bill.getNgayLap(), bill.getIdKhachHang() != 0 ? bill.getIdKhachHang() : "", bill.getThanhTien()};
             tblModel.addRow(obj);
         }
         tblModel.fireTableDataChanged();
     }
+
     public HoaDon getRowIsSelected() {
         int row = tblData.getSelectedRow();
         if (row >= 0) {
@@ -58,6 +59,7 @@ public class BillList extends ManagerView{
         }
         return null;
     }
+
     public void AddEventListener() {
 
         tblData.addMouseListener(new MouseAdapter() {
@@ -76,9 +78,9 @@ public class BillList extends ManagerView{
                 OrderPopup popup = new OrderPopup(emp);
                 popup.setVisible(true);
                 System.out.println(popup.isStatus());
-                if(popup.isStatus()){
+                if (popup.isStatus()) {
                     loadData();
-                    
+
                 }
             }
         });
@@ -99,6 +101,21 @@ public class BillList extends ManagerView{
                 loadData();
                 btnEdit.setEnabled(false);
             }
+        });
+
+        btnSearch.addActionListener((e) -> {
+            String keyword = txtSearch.getText().trim();
+            if (keyword != null && keyword.length() > 0) {
+                HoaDonDao dao = new HoaDonDao();
+                billList = dao.findById(Integer.parseInt(keyword));
+                tblModel.setRowCount(0);
+                Object[] row = new Object[]{billList.get(0).getId(), billList.get(0).getIdNhanVien(), billList.get(0).getNgayLap()
+                        , billList.get(0).getIdKhachHang() != 0 ? billList.get(0).getIdKhachHang() : "", billList.get(0).getThanhTien()};
+                tblModel.addRow(row);
+                tblModel.fireTableDataChanged();
+
+            }
+
         });
     }
 }

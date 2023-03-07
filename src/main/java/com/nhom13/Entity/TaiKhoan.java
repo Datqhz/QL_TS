@@ -59,6 +59,11 @@ public class TaiKhoan {
     public void setManv(String manv) {
         this.manv = manv;
     }
+
+    @Override
+    public String toString() {
+        return "TaiKhoan{" + "id=" + id + ", account=" + account + ", password=" + password + ", trangThai=" + trangThai + ", manv=" + manv + '}';
+    }
     
     
 }

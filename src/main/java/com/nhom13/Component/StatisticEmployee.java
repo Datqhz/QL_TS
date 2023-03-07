@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -17,7 +18,7 @@ public class StatisticEmployee extends javax.swing.JPanel {
 
     DefaultTableModel tblModel = new DefaultTableModel();
     List<DoanhThuTheoNhanVien> list = new ArrayList<>();
- 
+
     public StatisticEmployee() {
         initComponents();
         String[] header = new String[]{"Mã nhân viên", "Họ tên", "Số hóa đơn", "Tổng tiền"};
@@ -32,7 +33,6 @@ public class StatisticEmployee extends javax.swing.JPanel {
         tblData.getTableHeader().setForeground(new Color(255, 255, 255));
         ((DefaultTableCellRenderer) tblData.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.LEFT);
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -74,6 +74,7 @@ public class StatisticEmployee extends javax.swing.JPanel {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
         );
 
+        btnWatch.setBorder(null);
         btnWatch.setText("Xem");
         btnWatch.setRadius(10);
         btnWatch.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,31 +104,37 @@ public class StatisticEmployee extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateStart, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateEnd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnWatch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateStart, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateEnd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnWatch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnWatchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnWatchMouseClicked
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        if(dateStart.getDate()==null||dateEnd.getDate()==null){
+            JOptionPane.showMessageDialog(new java.awt.Frame(), "Vui lòng chọn ngày.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String fromDate = dateFormat.format(dateStart.getDate());
         String toDate = dateFormat.format(dateEnd.getDate());
-        DoanhThuDAO dao = new DoanhThuDAO();
-        list = dao.TongDoanhThuTheoNhanVienTuNgayDenNgay(fromDate, toDate);
-        tblModel.setRowCount(0);
-        for (DoanhThuTheoNhanVien doanhThu : list) {
-            Object[] row = new Object[]{doanhThu.getIdNhanVien() , doanhThu.getHoTen() , doanhThu.getSoHoaDon() , doanhThu.getTongDoanhThu()};
-            tblModel.addRow(row);
+            
+            DoanhThuDAO dao = new DoanhThuDAO();
+            list = dao.TongDoanhThuTheoNhanVienTuNgayDenNgay(fromDate, toDate);
+            tblModel.setRowCount(0);
+            for (DoanhThuTheoNhanVien doanhThu : list) {
+                Object[] row = new Object[]{doanhThu.getIdNhanVien(), doanhThu.getHoTen(), doanhThu.getSoHoaDon(), doanhThu.getTongDoanhThu()};
+                tblModel.addRow(row);
+            }
+            tblModel.fireTableDataChanged();
         }
-        tblModel.fireTableDataChanged();
         
+
     }//GEN-LAST:event_btnWatchMouseClicked
 
 

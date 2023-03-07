@@ -118,7 +118,8 @@ public class EmployeeDAO {
 
             con = DatabaseHelper.openConnection();
             statement = con.createStatement();
-            String sql = "SELECT * FROM  NHANVIEN NV, TAIKHOAN TK WHERE NV.MA_NV = TK.MA_NV";
+            String sql = "SELECT NV.MA_NV, HO, TEN, SDT, ID_VAI_TRO, GIOI_TINH, TK.ID_TK, ACCOUNT, PASSWORD, TRANG_THAI "
+                    + "FROM  NHANVIEN NV, TAIKHOAN TK WHERE NV.MA_NV = TK.MA_NV";
             ResultSet resultset = statement.executeQuery(sql);
             while (resultset.next()) {
                 Employee employee = new Employee();
@@ -145,7 +146,7 @@ public class EmployeeDAO {
         return result;
     }
 
-    public List<Employee> searchNhanVienByName(String keyword) {
+    public List<Employee> searchNhanVienByName(String keyword) throws Exception{
         List<Employee> result = new ArrayList<>();
         Connection con = null;
         Statement statement = null;

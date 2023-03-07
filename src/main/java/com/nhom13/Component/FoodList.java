@@ -138,12 +138,12 @@ public final class FoodList extends ManagerView {
             public void actionPerformed(ActionEvent e) {
                 String keyword = txtSearch.getText().trim();
                 if (keyword != null && keyword.length() > 0) {
-
                     try {
                         MonAnDAO monAnDAO = new MonAnDAO();
                         LoaiMonDao loaiMonDao = new LoaiMonDao();
-                        Foodlist = monAnDAO.findAll();
+                        Foodlist = monAnDAO.searchMonAnByName(keyword);
                         listCategory = loaiMonDao.findAll();
+                        tblModel.setRowCount(0);
                         for (MonAn monAn : Foodlist) {
                             Object[] row = new Object[]{monAn.getId(), monAn.getTenMon(), monAn.getDonVi(), monAn.getGia(), monAn.getMoTa(), getNameCategory(monAn.getIdLoaiMon())};
                             tblModel.addRow(row);

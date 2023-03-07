@@ -39,9 +39,11 @@ public class EmployeeManager extends ManagerView {
         getData();
         tblModel.setRowCount(0);
         for (Employee emp : listEmp) {
+            
             Object[] row = new Object[]{emp.getMaNV(), emp.getFirstName() + " " + emp.getLastName(), emp.getAccount().getAccount(), 
                 (emp.getSdt() == null) ? "" : emp.getSdt(), emp.getGioiTinh(), RoleName(emp.getRole()), StatusName(emp.getAccount().isTrangThai())};
             tblModel.addRow(row);
+//            System.out.println(emp.getAccount().toString());
         }
         tblModel.fireTableDataChanged();
     }
@@ -90,6 +92,7 @@ public class EmployeeManager extends ManagerView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Employee temp = getRowIsSelected();
+//                System.out.println(temp.getAccount().toString());
                 dialog.setFeature(Feature.EDIT, temp);
                 dialog.setStatus(false);
                 dialog.setVisible(true);

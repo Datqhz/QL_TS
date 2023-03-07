@@ -47,24 +47,24 @@ public class HoaDonDao {
         return result;
     }
 
-    public int getNewId() {
-        Connection con = null;
-        Statement statement = null;
-        int id = 0;
-        try {
-            con = DatabaseHelper.openConnection();
-            statement = con.createStatement();
-            String sql = "SELECT IDENT_CURRENT('HOADON') as LastID";
-            ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                id = resultSet.getInt(1);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return id;
-
-    }
+//    public int getNewId() {
+//        Connection con = null;
+//        Statement statement = null;
+//        int id = 0;
+//        try {
+//            con = DatabaseHelper.openConnection();
+//            statement = con.createStatement();
+//            String sql = "SELECT IDENT_CURRENT('HOADON') as LastID";
+//            ResultSet resultSet = statement.executeQuery(sql);
+//            while (resultSet.next()) {
+//                id = resultSet.getInt(1);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return id;
+//
+//    }
 
     public void save(HoaDon hoaDon) {
         Connection con = null;
@@ -135,6 +135,38 @@ public class HoaDonDao {
             e.printStackTrace();
         }
 
+    }
+    
+    public List<HoaDon> findById(int id){
+        Connection con = null;
+        Statement statement = null;
+        try {
+            con = DatabaseHelper.openConnection();
+            statement = con.createStatement();
+            String sql = "SELECT * FROM HOADON WHERE SO_HOA_DON="+id;
+            ResultSet resultSet = statement.executeQuery(sql);
+            HoaDon bill = new HoaDon();
+            while (resultSet.next()) {
+                
+                bill.setId(resultSet.getInt(1));
+                bill.setHinhThucThanhToan(resultSet.getString(2));
+                bill.setNgayLap(resultSet.getDate(3));
+                bill.setThanhTien(resultSet.getInt(4));
+                bill.setIdBan(resultSet.getInt(5));
+                bill.setIdNhanVien(resultSet.getString(6));
+                bill.setIdKhuyenMai(resultSet.getInt(7));
+                bill.setIdKhachHang(resultSet.getInt(8));
+            }
+            CTHoaDonDAO ctdao = new CTHoaDonDAO();
+            List<ChiTietHoaDon> ct = ctdao.findCTHD(id);
+            bill.setFoodList(ct);
+            List<HoaDon> billList = new ArrayList<>();
+            billList.add(bill);
+            return billList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 //    public void upate(HoaDon hoaDon) {
