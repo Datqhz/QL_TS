@@ -1,7 +1,11 @@
 package com.nhom13.Dialog;
 
+import com.nhom13.Support.UpperCaseFilter;
 import com.nhom13.DAO.KhachHangDAO;
 import com.nhom13.Entity.KhachHang;
+import com.nhom13.Support.CharFilterAlphabet;
+import com.nhom13.Support.CharFilterNumber;
+import static com.nhom13.Support.UpperCaseFilter.convertToUpperCase;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,8 +22,12 @@ public class ClientPopup extends javax.swing.JDialog {
         super(parent, true);
         initComponents();
         setLocationRelativeTo(null);
-        ((AbstractDocument) txtFirstName.getDocument()).setDocumentFilter(new UpperCaseFilter());
-        ((AbstractDocument) txtLastName.getDocument()).setDocumentFilter(new UpperCaseFilter());
+        AbstractDocument document1 = (AbstractDocument) txtFirstName.getDocument();
+        document1.setDocumentFilter(new CharFilterAlphabet());
+        AbstractDocument document2 = (AbstractDocument) txtLastName.getDocument();
+        document2.setDocumentFilter(new CharFilterAlphabet());
+        AbstractDocument document3 = (AbstractDocument) txtPhoneNumber.getDocument();
+        document3.setDocumentFilter(new CharFilterNumber());
     }
 
     public void setFeature(Feature task, KhachHang temp) {
@@ -85,9 +93,21 @@ public class ClientPopup extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        txtFirstName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFirstNameKeyReleased(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 102));
         jLabel2.setText("Họ");
+
+        txtLastName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtLastNameKeyReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 102));
@@ -290,6 +310,14 @@ public class ClientPopup extends javax.swing.JDialog {
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         ResetForm();
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void txtFirstNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFirstNameKeyReleased
+        convertToUpperCase(txtFirstName);
+    }//GEN-LAST:event_txtFirstNameKeyReleased
+
+    private void txtLastNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLastNameKeyReleased
+        convertToUpperCase(txtLastName);
+    }//GEN-LAST:event_txtLastNameKeyReleased
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */

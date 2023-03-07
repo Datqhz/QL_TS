@@ -5,12 +5,14 @@ import com.nhom13.Dialog.OrderPopup;
 import com.nhom13.Dialog.ShowBill;
 import com.nhom13.Entity.Employee;
 import com.nhom13.Entity.HoaDon;
+import com.nhom13.Support.CharFilterNumber;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.text.AbstractDocument;
 
 public class BillList extends ManagerView {
 
@@ -28,6 +30,8 @@ public class BillList extends ManagerView {
         loadData();
         AddEventListener();
         btnEdit.setEnabled(false);;
+        AbstractDocument document3 = (AbstractDocument) txtSearch.getDocument();
+        document3.setDocumentFilter(new CharFilterNumber());
     }
 
     public void getData() {

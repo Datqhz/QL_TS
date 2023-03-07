@@ -1,11 +1,15 @@
 package com.nhom13.Dialog;
 
+import com.nhom13.Support.UpperCaseFilter;
 import com.nhom13.DAO.EmployeeDAO;
 import com.nhom13.DAO.TaiKhoanDAO;
 import com.nhom13.DAO.VaiTroDAO;
 import com.nhom13.Entity.Employee;
 import com.nhom13.Entity.TaiKhoan;
 import com.nhom13.Entity.VaiTro;
+import com.nhom13.Support.CharFilterAlphabet;
+import com.nhom13.Support.CharFilterNumber;
+import static com.nhom13.Support.UpperCaseFilter.convertToUpperCase;
 import static com.nhom13.ql_ts.LoginForm.isContainSpecialWord;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -28,9 +32,12 @@ public class EmployeePopup extends javax.swing.JDialog {
         getData();
         cbxStatus.addItem("Active");
         cbxStatus.addItem("Disabled");
-        ((AbstractDocument) txtID.getDocument()).setDocumentFilter(new UpperCaseFilter());
-        ((AbstractDocument) txtFirstName.getDocument()).setDocumentFilter(new UpperCaseFilter());
-        ((AbstractDocument) txtLastName.getDocument()).setDocumentFilter(new UpperCaseFilter());
+        AbstractDocument document1 = (AbstractDocument) txtFirstName.getDocument();
+        document1.setDocumentFilter(new CharFilterAlphabet());
+        AbstractDocument document2 = (AbstractDocument) txtLastName.getDocument();
+        document2.setDocumentFilter(new CharFilterAlphabet());
+        AbstractDocument document3 = (AbstractDocument) txtPhoneNumber.getDocument();
+        document3.setDocumentFilter(new CharFilterNumber());
     }
 
     public boolean isStatus() {
@@ -134,6 +141,7 @@ public class EmployeePopup extends javax.swing.JDialog {
             txtPassword.setEnabled(false);
             txtPhoneNumber.setText((emp.getSdt() == null) ? "" : emp.getSdt());
             cbxRole.setSelectedIndex(emp.getRole() - 1);
+            cbxRole.setEnabled(false);
             switch (emp.getGioiTinh()) {
                 case "Nam":
                     rbMale.setSelected(true);
@@ -197,6 +205,11 @@ public class EmployeePopup extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         txtID.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIDKeyReleased(evt);
+            }
+        });
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -204,12 +217,22 @@ public class EmployeePopup extends javax.swing.JDialog {
         jLabel2.setText("Mã nhân viên");
 
         txtFirstName.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtFirstName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFirstNameKeyReleased(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 102));
         jLabel4.setText("Họ");
 
         txtLastName.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtLastName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtLastNameKeyReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 102));
@@ -552,6 +575,18 @@ public class EmployeePopup extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void txtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyReleased
+        convertToUpperCase(txtID);
+    }//GEN-LAST:event_txtIDKeyReleased
+
+    private void txtFirstNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFirstNameKeyReleased
+        convertToUpperCase(txtFirstName);
+    }//GEN-LAST:event_txtFirstNameKeyReleased
+
+    private void txtLastNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLastNameKeyReleased
+        convertToUpperCase(txtLastName);
+    }//GEN-LAST:event_txtLastNameKeyReleased
 
 //    public static void main(String args[]) {
 //

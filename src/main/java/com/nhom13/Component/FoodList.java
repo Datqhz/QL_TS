@@ -7,6 +7,7 @@ import com.nhom13.Dialog.Feature;
 import com.nhom13.Dialog.FoodPopup;
 import com.nhom13.Entity.LoaiMon;
 import com.nhom13.Entity.MonAn;
+import com.nhom13.Support.CharFilterAlphabet;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument;
 
 public final class FoodList extends ManagerView {
 
@@ -32,6 +34,8 @@ public final class FoodList extends ManagerView {
         AddEventListener();
         btnEdit.setEnabled(false);
         btnRemove.setEnabled(false);
+        AbstractDocument document1 = (AbstractDocument) txtSearch.getDocument();
+        document1.setDocumentFilter(new CharFilterAlphabet());
     }
 
     private void getData() {

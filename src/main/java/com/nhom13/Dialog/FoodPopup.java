@@ -4,6 +4,8 @@ import com.nhom13.DAO.LoaiMonDao;
 import com.nhom13.DAO.MonAnDAO;
 import com.nhom13.Entity.LoaiMon;
 import com.nhom13.Entity.MonAn;
+import com.nhom13.Support.CharFilterAlphabet;
+import com.nhom13.Support.CharFilterNumber;
 import java.awt.Image;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -11,6 +13,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument;
 
 public class FoodPopup extends javax.swing.JDialog {
 
@@ -28,6 +31,10 @@ public class FoodPopup extends javax.swing.JDialog {
         this.maNV = maNv;
         setTitle("Thêm món.");
         cbxCategory.setModel(modelcbx);
+        AbstractDocument document1 = (AbstractDocument) txtUnit.getDocument();
+        document1.setDocumentFilter(new CharFilterAlphabet());
+        AbstractDocument document3 = (AbstractDocument) txtPrice.getDocument();
+        document3.setDocumentFilter(new CharFilterNumber());
     }
 
     public boolean isStatus() {

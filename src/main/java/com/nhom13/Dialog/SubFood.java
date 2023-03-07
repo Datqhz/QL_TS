@@ -1,7 +1,9 @@
 package com.nhom13.Dialog;
 
+import com.nhom13.Support.CharFilterNumber;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.text.AbstractDocument;
 
 public class SubFood extends javax.swing.JDialog {
 
@@ -12,6 +14,8 @@ public class SubFood extends javax.swing.JDialog {
         super(new javax.swing.JFrame(), true);
         initComponents();
         setLocationRelativeTo(null);
+        AbstractDocument document3 = (AbstractDocument) txtSL.getDocument();
+        document3.setDocumentFilter(new CharFilterNumber());
     }
 
     public boolean isStatus() {

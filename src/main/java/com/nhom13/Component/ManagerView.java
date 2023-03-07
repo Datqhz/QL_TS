@@ -1,5 +1,6 @@
 package com.nhom13.Component;
 
+import static com.nhom13.Support.UpperCaseFilter.convertToUpperCase;
 import com.nhom13.swingCustom.ButtonCustom;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -125,6 +126,11 @@ public class ManagerView extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblData);
 
         txtSearch.setToolTipText("");
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
 
         btnSearch.setBorder(null);
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search_20.png"))); // NOI18N
@@ -239,6 +245,10 @@ public class ManagerView extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        convertToUpperCase(txtSearch);
+    }//GEN-LAST:event_txtSearchKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

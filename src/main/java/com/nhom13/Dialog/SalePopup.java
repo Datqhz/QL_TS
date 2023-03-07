@@ -2,8 +2,14 @@ package com.nhom13.Dialog;
 
 import com.nhom13.DAO.KhuyenMaiDAO;
 import com.nhom13.Entity.KhuyenMai;
+import com.nhom13.Support.CharFilterNumber;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument;
 
 public class SalePopup extends javax.swing.JDialog {
 
@@ -17,6 +23,8 @@ public class SalePopup extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         this.maNV = maNV;
+        AbstractDocument document3 = (AbstractDocument) txtSaleValue.getDocument();
+        document3.setDocumentFilter(new CharFilterNumber());
     }
 
     public boolean isStatus() {
@@ -26,7 +34,21 @@ public class SalePopup extends javax.swing.JDialog {
     public void setStatus(boolean status) {
         this.status = status;
     }
-
+    
+    public boolean checkSaleIsPresent(Date start){
+        List<KhuyenMai> saleList = new ArrayList<>();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try{
+            KhuyenMaiDAO dao = new KhuyenMaiDAO();
+            saleList = dao.searchByDate(dateFormat.format(start));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        if(saleList.isEmpty()){
+            return true;
+        }
+        return false;
+    }
     public void resetForm() {
         txtReason.setText("");
         lblError.setText("");
@@ -252,7 +274,10 @@ public class SalePopup extends javax.swing.JDialog {
         } else if (Integer.parseInt(value) <= 0 || Integer.parseInt(value) > 100) {
             lblError.setText("Giá trị khuyến mãi phải nằm trong khoảng 0 đến 100!");
             txtSaleValue.setText("");
-        } else {
+        } else if(checkSaleIsPresent(start)){
+            JOptionPane.showMessageDialog(this, "Ngày bạn chọn đang có đợt khuyến mãi đang diễn ra, vui lòng chọn ngày khác!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            dateStart.setDate(null);
+        }else {
             KhuyenMai tmp = new KhuyenMai();
             tmp.setNgayApDung(start);
             tmp.setNgayKetThuc(end);

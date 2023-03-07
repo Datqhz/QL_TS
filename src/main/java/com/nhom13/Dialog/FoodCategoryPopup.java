@@ -1,7 +1,10 @@
 package com.nhom13.Dialog;
 
+import com.nhom13.Support.UpperCaseFilter;
 import com.nhom13.DAO.LoaiMonDao;
 import com.nhom13.Entity.LoaiMon;
+import com.nhom13.Support.CharFilterAlphabet;
+import static com.nhom13.Support.UpperCaseFilter.convertToUpperCase;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.text.AbstractDocument;
@@ -18,7 +21,9 @@ public class FoodCategoryPopup extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         this.maNV = maNV;
-        ((AbstractDocument) txtCategoryName.getDocument()).setDocumentFilter(new UpperCaseFilter());
+//        ((AbstractDocument) txtCategoryName.getDocument()).setDocumentFilter(new UpperCaseFilter());
+        AbstractDocument document1 = (AbstractDocument) txtCategoryName.getDocument();
+        document1.setDocumentFilter(new CharFilterAlphabet());
     }
 
     public boolean isStatus() {
@@ -58,6 +63,11 @@ public class FoodCategoryPopup extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         txtCategoryName.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtCategoryName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCategoryNameKeyReleased(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 102));
@@ -178,6 +188,10 @@ public class FoodCategoryPopup extends javax.swing.JDialog {
         txtCategoryName.setText("");
         setVisible(false);
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void txtCategoryNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCategoryNameKeyReleased
+          convertToUpperCase(txtCategoryName);
+    }//GEN-LAST:event_txtCategoryNameKeyReleased
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */

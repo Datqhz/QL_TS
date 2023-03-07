@@ -73,7 +73,7 @@ public class LoginForm extends javax.swing.JFrame {
             lblError.setText("Username must not contain special character");
             check = false;
         } else if (txtUsername.getText().contains(" ")) {
-            lblError.setText("Username không được chứa khoảng trắng.");
+            lblError.setText("Username must not contain space.");
             check = false;
         }
 
@@ -81,7 +81,7 @@ public class LoginForm extends javax.swing.JFrame {
             lblError.setText("Please enter your password");
             check = false;
         } else if (new String(txtPassword.getPassword()).contains(" ")) {
-            lblError.setText("Username must not contain space");
+            lblError.setText("Password must not contain space");
             check = false;
         }
         if (check) {

@@ -148,6 +148,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSearch">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSearchKeyReleased"/>
+          </Events>
         </Component>
         <Component class="com.nhom13.swingCustom.ButtonCustom" name="btnAdd">
           <Properties>

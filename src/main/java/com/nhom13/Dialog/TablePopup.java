@@ -1,10 +1,12 @@
 package com.nhom13.Dialog;
 
+import com.nhom13.Support.UpperCaseFilter;
 import com.nhom13.DAO.BanDAO;
 import com.nhom13.DAO.CTBanDAO;
 import com.nhom13.Entity.Ban;
 import com.nhom13.Entity.ChiTietBan;
 import com.nhom13.Entity.KhuyenMai;
+import static com.nhom13.Support.UpperCaseFilter.convertToUpperCase;
 import javax.swing.JOptionPane;
 import javax.swing.text.AbstractDocument;
 
@@ -22,7 +24,6 @@ public class TablePopup extends javax.swing.JDialog {
         this.maNV = maNV;
         cbxStatus.addItem("Trống");
         cbxStatus.addItem("Đang sử dụng");
-        ((AbstractDocument) txtTenBan.getDocument()).setDocumentFilter(new UpperCaseFilter());
     }
 
     public boolean isStatus() {
@@ -70,6 +71,11 @@ public class TablePopup extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         txtTenBan.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtTenBan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTenBanKeyReleased(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 102));
@@ -205,6 +211,10 @@ public class TablePopup extends javax.swing.JDialog {
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void txtTenBanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenBanKeyReleased
+        convertToUpperCase(txtTenBan);
+    }//GEN-LAST:event_txtTenBanKeyReleased
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */

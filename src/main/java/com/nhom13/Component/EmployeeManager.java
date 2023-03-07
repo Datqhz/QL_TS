@@ -4,12 +4,14 @@ import com.nhom13.DAO.EmployeeDAO;
 import com.nhom13.Dialog.EmployeePopup;
 import com.nhom13.Dialog.Feature;
 import com.nhom13.Entity.Employee;
+import com.nhom13.Support.CharFilterAlphabet;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument;
 
 public class EmployeeManager extends ManagerView {
 
@@ -24,6 +26,8 @@ public class EmployeeManager extends ManagerView {
         btnEdit.setEnabled(false);
         loadData();
         AddEventListener();
+        AbstractDocument document1 = (AbstractDocument) txtSearch.getDocument();
+        document1.setDocumentFilter(new CharFilterAlphabet());
     }
 
     public void getData() {

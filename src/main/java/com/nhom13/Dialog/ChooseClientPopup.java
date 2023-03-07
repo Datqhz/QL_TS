@@ -1,7 +1,9 @@
 package com.nhom13.Dialog;
 
+import com.nhom13.Support.UpperCaseFilter;
 import com.nhom13.DAO.KhachHangDAO;
 import com.nhom13.Entity.KhachHang;
+import static com.nhom13.Support.UpperCaseFilter.convertToUpperCase;
 import com.nhom13.swingCustom.ScrollBarCustom;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,6 @@ public class ChooseClientPopup extends javax.swing.JDialog {
         getData();
         jScrollPane2.setVerticalScrollBar(new ScrollBarCustom());
         loadData();
-        ((AbstractDocument) txtSearch.getDocument()).setDocumentFilter(new UpperCaseFilter());
         btnChoose.setEnabled(false);
     }
 
@@ -112,6 +113,12 @@ public class ChooseClientPopup extends javax.swing.JDialog {
         btnChoose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChooseActionPerformed(evt);
+            }
+        });
+
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
             }
         });
 
@@ -251,6 +258,10 @@ public class ChooseClientPopup extends javax.swing.JDialog {
             btnChoose.setEnabled(true);
         }
     }//GEN-LAST:event_tblDataMouseClicked
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        convertToUpperCase(txtSearch);
+    }//GEN-LAST:event_txtSearchKeyReleased
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */

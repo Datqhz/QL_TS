@@ -4,12 +4,14 @@ import com.nhom13.DAO.KhachHangDAO;
 import com.nhom13.Dialog.ClientPopup;
 import com.nhom13.Dialog.Feature;
 import com.nhom13.Entity.KhachHang;
+import com.nhom13.Support.CharFilterAlphabet;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument;
 
 public class ClientManager extends ManagerView {
 
@@ -25,7 +27,8 @@ public class ClientManager extends ManagerView {
         AddEventListener();
         btnEdit.setEnabled(false);
         btnRemove.setEnabled(false);
-
+        AbstractDocument document1 = (AbstractDocument) txtSearch.getDocument();
+        document1.setDocumentFilter(new CharFilterAlphabet());
     }
 
     public void getData() {
