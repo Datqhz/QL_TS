@@ -80,7 +80,7 @@ public class FoodPopup extends javax.swing.JDialog {
         feature = f;
         if (feature == Feature.ADD) {
             btnFeature.setText("ADD");
-
+            resetForm();
             this.monAn = null;
         } else {
             btnFeature.setText("EDIT");
@@ -105,7 +105,18 @@ public class FoodPopup extends javax.swing.JDialog {
         imageIcon = new ImageIcon(newimg);
         return imageIcon;
     }
-
+    public boolean checkFoodName(String name){
+        try{
+            MonAnDAO dao = new MonAnDAO();
+            MonAn temp = dao.findMonAnByName(name.toUpperCase());
+            if(temp!=null){
+                return true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -364,13 +375,15 @@ public class FoodPopup extends javax.swing.JDialog {
         String imgPath;
         if (check(txtImgPath.getText().trim())) {
             imgPath = "C:\\Users\\baam0\\OneDrive\\Documents\\GitHub\\QL_TS\\src\\main\\resources\\new.png";
-        } else {
+        }else {
             imgPath = txtImgPath.getText();
         }
         String tenLoai = cbxCategory.getSelectedItem().toString();
         if (check(name) || check(gia) || check(tenLoai)) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng điền đầy đủ thông tin");
-        } else {
+        } else if(checkFoodName(name)){
+            JOptionPane.showMessageDialog(rootPane, "Tên món đã tồn tại.");
+        }else {
             MonAn monAn1 = new MonAn();
             monAn1.setTenMon(name);
             monAn1.setDonVi(donVi);

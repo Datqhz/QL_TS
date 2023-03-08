@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.nhom13.DAO;
 
 import com.nhom13.Database.DatabaseHelper;
@@ -170,6 +166,29 @@ public class BanDAO {
             ex.printStackTrace();
         }
         return result;
+    }
+
+    public Ban findhByName(String name) {
+        Connection con = null;
+        Statement statement = null;
+        try {
+            con = DatabaseHelper.openConnection();
+            statement = con.createStatement();
+            String sql = "SELECT * FROM BAN b WHERE b.TEN_BAN = N'" + name + "'";
+            ResultSet resultset = statement.executeQuery(sql);
+            while (resultset.next()) {
+                Ban ban = new Ban();
+                ban.setId(resultset.getInt(1));
+                ban.setTenBan(resultset.getString(2));
+                ban.setNgayTao(resultset.getDate(3));
+                ban.setTrangThai(resultset.getBoolean(4));
+                return ban;
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     public List<Ban> searchTableActive() {

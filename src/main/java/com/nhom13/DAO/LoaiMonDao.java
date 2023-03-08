@@ -136,5 +136,23 @@ public class LoaiMonDao {
 
         return result;
     }
+        public LoaiMon SearchTenLoaiMon(String name) throws Exception {
+        Connection con = null;
+        Statement statement = null;
+        try {
+            con = DatabaseHelper.openConnection();
+            statement = con.createStatement();
+            String sql = "SELECT * FROM LOAIMON L WHERE L.TEN_LOAI_MON = N'" +name+"'";
+            ResultSet resultset = statement.executeQuery(sql);
+            while (resultset.next()) {
+                LoaiMon result = new LoaiMon(resultset.getInt(1), resultset.getString(2), resultset.getString(3));
+                return result;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+        
+    }
 
 }

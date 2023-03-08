@@ -73,7 +73,6 @@ public class Home extends javax.swing.JFrame {
             QLNV.setVisible(false);
             TK.setVisible(false);
             QLKM.setVisible(false);
-            QLKH.setVisible(false);
         }
 
     }

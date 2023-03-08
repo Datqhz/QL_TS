@@ -43,6 +43,7 @@ public class ClientPopup extends javax.swing.JDialog {
         } else {
             btnFeature.setText("Thêm");
             client = null;
+            ResetForm();
 
         }
 

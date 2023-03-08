@@ -205,4 +205,30 @@ public class MonAnDAO {
         }
         return result;
     }
+        public MonAn findMonAnByName(String keyword) {
+        Connection con = null;
+        Statement statement = null;
+        try {
+            con = DatabaseHelper.openConnection();
+            statement = con.createStatement();
+            String sql = "SELECT * FROM MONAN M WHERE M.TEN_MON LIKE '%" + keyword + "%' ";
+            ResultSet resultset = statement.executeQuery(sql);
+            while (resultset.next()) {
+                MonAn monAn = new MonAn();
+                monAn.setId(resultset.getInt(1));
+                monAn.setTenMon(resultset.getString(2));
+                monAn.setDonVi(resultset.getString(3));
+                monAn.setGia(resultset.getInt(4));
+                monAn.setAnh(resultset.getString(5));
+                monAn.setMoTa(resultset.getString(6));
+                monAn.setIdLoaiMon(resultset.getInt(7));
+                monAn.setMaNv(resultset.getString(8));
+                return monAn;
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

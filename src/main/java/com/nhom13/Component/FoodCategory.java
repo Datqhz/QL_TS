@@ -2,16 +2,19 @@ package com.nhom13.Component;
 
 import com.nhom13.DAO.KhuyenMaiDAO;
 import com.nhom13.DAO.LoaiMonDao;
+import com.nhom13.DAO.MonAnDAO;
 import com.nhom13.Dialog.Feature;
 import com.nhom13.Dialog.FoodCategoryPopup;
 import com.nhom13.Entity.Employee;
 import com.nhom13.Entity.KhuyenMai;
 import com.nhom13.Entity.LoaiMon;
+import com.nhom13.Entity.MonAn;
 import com.nhom13.Support.CharFilterAlphabet;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -105,8 +108,8 @@ public class FoodCategory extends ManagerView {
         btnRemove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                try {
+                if(getFood(getCategoryIsSelected().getId())){
+                    try {
                     LoaiMonDao dao = new LoaiMonDao();
                     JOptionPane.showMessageDialog(new java.awt.Frame(), "Xóa loại món thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                     dao.deleteLoaiMon(getCategoryIsSelected());
@@ -117,6 +120,10 @@ public class FoodCategory extends ManagerView {
                 loadData();
                 btnEdit.setEnabled(false);
                 btnRemove.setEnabled(false);
+                }else{
+                    JOptionPane.showMessageDialog(new java.awt.Frame(), "Có món ăn thuộc loại món này, Không thể xóa.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                }
+                
             }
         });
 
@@ -153,5 +160,18 @@ public class FoodCategory extends ManagerView {
             }
 
         });
+    }
+       public boolean getFood(int id) {
+        try {
+            List<MonAn>templist = new ArrayList<>();
+            MonAnDAO monAnDAO = new MonAnDAO();
+            templist = monAnDAO.findByCategory(id);
+            if(!templist.isEmpty()){
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 }

@@ -46,7 +46,20 @@ public class FoodCategoryPopup extends javax.swing.JDialog {
             txtCategoryName.setText(loaiMon.getTen());
         }
     }
-
+    public boolean checkTenLoai(String name){
+        try{
+            LoaiMonDao dao = new LoaiMonDao();
+            LoaiMon temp = dao.SearchTenLoaiMon(name);
+            if(temp==null){
+                return false;
+            }else{
+                return true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -159,7 +172,9 @@ public class FoodCategoryPopup extends javax.swing.JDialog {
         String tenLoaiMon = txtCategoryName.getText().trim();
         if (tenLoaiMon == null || tenLoaiMon.length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Field can not empty");
-        } else {
+        }else if(checkTenLoai(tenLoaiMon)){
+            JOptionPane.showMessageDialog(rootPane, "Category name already exist");
+        }else {
             LoaiMon lm = new LoaiMon(tenLoaiMon, maNV);
 
             try {

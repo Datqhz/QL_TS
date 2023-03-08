@@ -158,6 +158,8 @@ public class EmployeePopup extends javax.swing.JDialog {
             txtID.setEnabled(true);
             txtAccount.setEnabled(true);
             txtPassword.setEnabled(true);
+            ResetForm();
+                    
         }
     }
 
@@ -530,7 +532,7 @@ public class EmployeePopup extends javax.swing.JDialog {
                     tkDao.save(acc);
                     JOptionPane.showMessageDialog(new java.awt.Frame(), "Thêm nhân viên thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                     status = true;
-
+                    setVisible(false);
                 } catch (Exception e) {
                     System.out.println("Thêm không thành công.");
                 }
@@ -548,13 +550,14 @@ public class EmployeePopup extends javax.swing.JDialog {
                     dao.updateEmployee(temp);
                     JOptionPane.showMessageDialog(new java.awt.Frame(), "Cập nhật thông tin nhân viên thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                     status = true;
+                    setVisible(false);
                 } catch (Exception e) {
                     System.out.println("Thêm không thành công.");
                 }
             }
             ResetForm();
         }
-        setVisible(false);
+        
 //        System.out.println(roles.get(roleIndex));
 
     }//GEN-LAST:event_btnFeatureActionPerformed
