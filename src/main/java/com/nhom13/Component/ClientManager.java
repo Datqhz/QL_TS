@@ -103,9 +103,14 @@ public class ClientManager extends ManagerView {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    KhachHangDAO dao = new KhachHangDAO();
-                    JOptionPane.showMessageDialog(new java.awt.Frame(), "Xóa khách hàng thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                    dao.deleteKhachHang(getRowIsSelected());
+                     KhachHangDAO dao = new KhachHangDAO();
+                    int result = JOptionPane.showConfirmDialog(tblData, "Bạn có chắc muốn xóa không", "Confirm Dialog",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE);
+                    if (result == 0) {
+                        JOptionPane.showMessageDialog(new java.awt.Frame(), "Xóa khách hàng thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                        dao.deleteKhachHang(getRowIsSelected());
+                    }
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
