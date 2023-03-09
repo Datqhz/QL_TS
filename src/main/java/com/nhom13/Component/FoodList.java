@@ -114,9 +114,14 @@ public final class FoodList extends ManagerView {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    MonAnDAO dao = new MonAnDAO();
-                    JOptionPane.showMessageDialog(new java.awt.Frame(), "Xóa món thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                    dao.deleteMonAn(getSaleIsSelected());
+                     MonAnDAO dao = new MonAnDAO();
+                    int result = JOptionPane.showConfirmDialog(tblData, "Bạn có chắc muốn xóa không", "Confirm Dialog",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE);
+                    if (result == 0) {
+                        JOptionPane.showMessageDialog(new java.awt.Frame(), "Xóa món thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                        dao.deleteMonAn(getSaleIsSelected());
+                    }
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
