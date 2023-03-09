@@ -183,9 +183,14 @@ public class FoodCategoryPopup extends javax.swing.JDialog {
                     lmd.save(lm);
                     JOptionPane.showMessageDialog(rootPane, "Save Successfull");
                 } else {
-                    lm.setId(loaiMon.getId());
-                    lmd.update(lm, maNV);
-                    JOptionPane.showMessageDialog(rootPane, "Update Successfull");
+                    int result = JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn sửa không ? ", "Confirm Dialog",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE);
+                    if (result == 0) {
+                        lm.setId(loaiMon.getId());
+                        lmd.update(lm, maNV);
+                        JOptionPane.showMessageDialog(rootPane, "Bạn đã sửa thông tin loại món thành công!");
+                    }
                 }
                 status = true;
                 txtCategoryName.setText("");
