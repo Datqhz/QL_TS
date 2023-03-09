@@ -208,13 +208,19 @@ public class TablePopup extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(rootPane, "Add Successful");
                     dao.save(ban1);
                 } else {
-                    if (tt != ban.getTrangThai()) {
+                   if (tt != ban.getTrangThai()) {
+                        int result = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn sửa không ?", "Confirm Dialog",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE);
+                    if (result == 0) {
                         ban.setTrangThai(tt);
                         dao.update(ban);
                         CTBanDAO ctdao = new CTBanDAO();
                         ChiTietBan ct = new ChiTietBan(tt, ban.getId(), maNV);
                         ctdao.save(ct);
-                        JOptionPane.showMessageDialog(rootPane, "Update successful");
+                        JOptionPane.showMessageDialog(this, "Update successful");
+                    }
+                        
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Trạng thái bàn chưa được thay đổi.");
                     }
