@@ -290,10 +290,15 @@ public class ClientPopup extends javax.swing.JDialog {
                     client = temp;
                     JOptionPane.showMessageDialog(new java.awt.Frame(), "Thêm khách hàng thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    KhachHang temp = new KhachHang(client.getId(), ho, ten, sdt, ns);
-                    dao.update(temp);
-                    JOptionPane.showMessageDialog(new java.awt.Frame(), "Sửa thông tin khách hàng thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                    client = temp;
+                     KhachHang temp = new KhachHang(client.getId(), ho, ten, sdt, ns);
+                    int result = JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn sửa không ? ", "Confirm Dialog",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE);
+                    if (result == 0) {
+                        dao.update(temp);
+                        JOptionPane.showMessageDialog(new java.awt.Frame(), "Sửa thông tin khách hàng thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                        client = temp;
+                    }
                 }
                 ResetForm();
                 status = true;
