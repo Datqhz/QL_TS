@@ -110,9 +110,14 @@ public class FoodCategory extends ManagerView {
             public void actionPerformed(ActionEvent e) {
                 if(getFood(getCategoryIsSelected().getId())){
                     try {
-                    LoaiMonDao dao = new LoaiMonDao();
-                    JOptionPane.showMessageDialog(new java.awt.Frame(), "Xóa loại món thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                    dao.deleteLoaiMon(getCategoryIsSelected());
+                     LoaiMonDao dao = new LoaiMonDao();
+                    int result = JOptionPane.showConfirmDialog(tblData, "Bạn có chắc muốn xóa không", "Confirm Dialog",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE);
+                    if (result == 0) {
+                      JOptionPane.showMessageDialog(new java.awt.Frame(), "Xóa loại món thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                      dao.deleteLoaiMon(getCategoryIsSelected());
+                    }
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
