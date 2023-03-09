@@ -313,9 +313,14 @@ public class SalePopup extends javax.swing.JDialog {
                     dao.save(tmp, maNV);
                     JOptionPane.showMessageDialog(this, "Bạn đã thêm khuyến mãi thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    tmp.setId(sale.getId());
-                    dao.updateSale(tmp, maNV);
-                    JOptionPane.showMessageDialog(this, "Sửa khuyến mãi thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                     int result = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn sửa không", "Confirm Dialog",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE);
+                    if (result == 0) {
+                        tmp.setId(sale.getId());
+                        dao.updateSale(tmp, maNV);
+                        JOptionPane.showMessageDialog(this, "Sửa khuyến mãi thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
                 status = true;
                 this.dispose();
