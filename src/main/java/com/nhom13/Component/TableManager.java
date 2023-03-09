@@ -81,8 +81,13 @@ public final class TableManager extends ManagerView {
         btnRemove.addActionListener((ActionEvent e) -> {
             try {
                 BanDAO dao = new BanDAO();
-                JOptionPane.showMessageDialog(new java.awt.Frame(), "Xóa bàn thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                dao.deleteBan(getBanSelected());
+                int result = JOptionPane.showConfirmDialog(this,"Bạn có chắc muốn xóa không", "Confirm Dialog",
+               JOptionPane.YES_NO_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+                if(result == 0){
+                  JOptionPane.showMessageDialog(new java.awt.Frame(), "Xóa bàn thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                   dao.deleteBan(getBanSelected());
+                }
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
